@@ -1,4 +1,4 @@
-# AsyncQueue plugin for Craft CMS 3.x
+# DON'T USE IN PRODUCTION!! AsyncQueue plugin for Craft CMS 3.x
 
 A queue handler that moves queue execution to a non-blocking background process
 
@@ -28,7 +28,7 @@ To install the plugin, follow these instructions.
 
 ## Configuring AsyncQueue
 
--Insert text here-
+set the ENV var PATH_PHP_BINARY to change the path to the php binary 
 
 ## Using AsyncQueue
 
