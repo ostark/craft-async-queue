@@ -97,7 +97,7 @@ class Queue extends CraftDefaultQueue
      */
     protected function getPhpBinary(): string
     {
-        return getenv('PHP_BINARY') ?? 'php';
+        return getenv('PATH_PHP_BINARY') ?? '/usr/bin/php';
     }
 
 }
