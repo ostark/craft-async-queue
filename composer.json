@@ -1,5 +1,5 @@
 {
-    "name": "ostark/async-queue",
+    "name": "ostark/craft-async-queue",
     "description": "A queue handler that moves queue execution to a non-blocking background process",
     "type": "craft-plugin",
     "version": "1.0.0",
@@ -11,8 +11,8 @@
         "asyncqueue"
     ],
     "support": {
-        "docs": "https://github.com/ostark/async-queue/blob/master/README.md",
-        "issues": "https://github.com/ostark/async-queue/issues"
+        "docs": "https://github.com/ostark/craft-async-queue/blob/master/README.md",
+        "issues": "https://github.com/ostark/craft-async-queue/issues"
     },
     "license": "MIT",
     "authors": [
@@ -41,6 +41,6 @@
         "schemaVersion": "1.0.0",
         "hasCpSettings": false,
         "hasCpSection": false,
-        "changelogUrl": "https://raw.githubusercontent.com/ostark/async-queue/master/CHANGELOG.md"
+        "changelogUrl": "https://raw.githubusercontent.com/ostark/craft-async-queue/master/CHANGELOG.md"
     }
 }
