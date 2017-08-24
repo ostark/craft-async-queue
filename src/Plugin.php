@@ -73,14 +73,23 @@ class Plugin extends BasePlugin
 
         Craft::$app->getConfig()->getGeneral()->runQueueAutomatically = false;
 
+
+        // Inject some jobs for demo purpose
         if (Craft::$app instanceof \craft\web\Application)
         {
             if (\Craft::$app->request->fullPath === 'services') {
+                Craft::$app->getQueue()->push(new DemoJob());
+                Craft::$app->getQueue()->push(new DemoJob());
+                Craft::$app->getQueue()->push(new DemoJob());
+                Craft::$app->getQueue()->push(new DemoJob());
+                Craft::$app->getQueue()->push(new DemoJob());
+                Craft::$app->getQueue()->push(new DemoJob());
+                Craft::$app->getQueue()->push(new DemoJob());
+                Craft::$app->getQueue()->push(new DemoJob());
                 Craft::$app->getQueue()->push(new DemoJob());
             }
         }
 
     }
-
 
 }

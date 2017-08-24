@@ -8,9 +8,7 @@
 
 namespace ostark\asyncqueue;
 
-
 use craft\queue\BaseJob;
-use craft\queue\QueueInterface;
 
 class DemoJob extends BaseJob
 {
@@ -20,10 +18,9 @@ class DemoJob extends BaseJob
      */
     public function execute($queue)
     {
-        echo 'I AM A JOB';
-        \Craft::info('DemoJob - before sleep');
-        sleep(20);
-        \Craft::info('DemoJob - after sleep');
+        \Craft::info('DemoJob >>> before sleep');
+        sleep(10);
+        \Craft::info('DemoJob >>> after sleep');
 
     }
 }

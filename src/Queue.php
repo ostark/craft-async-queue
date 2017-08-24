@@ -13,11 +13,10 @@ use Symfony\Component\Process\Process;
 
 class Queue extends CraftDefaultQueue
 {
-
     /**
-     * @var string
+     * @var int default time to reserve a job
      */
-    public $phpBinary = 'php';
+    public $ttr = 0;
 
     /**
      * @var string|null The description of the job being pushed into the queue
@@ -38,7 +37,6 @@ class Queue extends CraftDefaultQueue
         } else {
             $this->_jobDescription = null;
         }
-
         if (($id = parent::push($job)) === null) {
             return null;
         }
@@ -49,36 +47,43 @@ class Queue extends CraftDefaultQueue
     }
 
 
+    /**
+     * @param string $id
+     */
     protected function startBackgroundProcess(string $id)
     {
-
         $command = $this->getCommand($id);
         $cwd     = CRAFT_BASE_PATH;
 
         $process = new Process($command, $cwd);
         $process->run();
-        die($process->getOutput());
-
-    }
-
-    protected function getCommand($id)
-    {
-        $cmd     = '%s craft queue/run %s %d %d';
-        $cmd     = $this->getBackgroundCommand($cmd);
-        $binary  = $this->phpBinary;
-        $ttr     = 30;
-        $attempt = 1;
-
-        return sprintf($cmd, $binary, $id, $ttr, $attempt);
 
     }
 
     /**
+     * Construct queue command
+     *
+     * @param string $id
+     *
+     * @return string
+     */
+    protected function getCommand(string $id): string
+    {
+        $cmd    = '%s craft queue/run -v';
+        $cmd    = $this->getBackgroundCommand($cmd);
+        $binary = $this->getPhpBinary();
+
+        return sprintf($cmd, $binary);
+    }
+
+    /**
+     * Extend command with background syntax
+     *
      * @param string $cmd
      *
      * @return string
      */
-    protected function getBackgroundCommand(string $cmd)
+    protected function getBackgroundCommand(string $cmd): string
     {
         if (defined('PHP_WINDOWS_VERSION_BUILD')) {
             return 'start /B ' . $cmd . ' > NUL';
@@ -87,5 +92,12 @@ class Queue extends CraftDefaultQueue
         }
     }
 
+    /**
+     * @return string
+     */
+    protected function getPhpBinary(): string
+    {
+        return getenv('PHP_BINARY') ?? 'php';
+    }
 
 }
