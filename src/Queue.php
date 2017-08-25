@@ -24,6 +24,11 @@ class Queue extends CraftDefaultQueue
     private $_jobDescription;
 
     /**
+     * @var bool
+     */
+    protected $backgroundProcessIsRunning = false;
+
+    /**
      * @param mixed|\yii\queue\Job $job
      *
      * @return null|string
@@ -41,7 +46,11 @@ class Queue extends CraftDefaultQueue
             return null;
         }
 
-        $this->startBackgroundProcess($id);
+        // Run one 'queue/run' process at a time
+        if (!$this->backgroundProcessIsRunning) {
+            $this->startBackgroundProcess($id);
+            $this->backgroundProcessIsRunning = true;
+        }
 
         return $id;
     }

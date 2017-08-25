@@ -19,8 +19,20 @@ class DemoJob extends BaseJob
     public function execute($queue)
     {
         \Craft::info('DemoJob >>> before sleep');
-        sleep(10);
+        sleep(5);
         \Craft::info('DemoJob >>> after sleep');
 
+    }
+
+
+    // Protected Methods
+    // =========================================================================
+
+    /**
+     * @inheritdoc
+     */
+    protected function defaultDescription(): string
+    {
+        return Craft::t('app', 'Sleeping for 5 seconds');
     }
 }
