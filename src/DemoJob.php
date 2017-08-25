@@ -33,6 +33,6 @@ class DemoJob extends BaseJob
      */
     protected function defaultDescription(): string
     {
-        return Craft::t('app', 'Sleeping for 5 seconds');
+        return \Craft::t('app', 'Sleeping for 5 seconds');
     }
 }
