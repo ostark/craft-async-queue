@@ -71,11 +71,11 @@ class Plugin extends BasePlugin
      */
     protected function getCommand(string $id): string
     {
-        $cmd    = "%s craft queue/exec %s 0 1 --verbose=1";
+        $cmd    = "%s craft queue/run --verbose=1";
         $cmd    = $this->getBackgroundCommand($cmd);
         $binary = getenv('PATH_PHP_BINARY') ?? '/usr/bin/php';
 
-        return sprintf($cmd, $binary, $id);
+        return sprintf($cmd, $binary);
     }
 
     /**
