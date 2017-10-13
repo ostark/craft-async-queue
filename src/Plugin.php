@@ -13,6 +13,7 @@ namespace ostark\AsyncQueue;
 
 use Craft;
 use craft\base\Plugin as BasePlugin;
+use craft\queue\Queue;
 use Symfony\Component\Process\Process;
 use yii\queue\PushEvent;
 
