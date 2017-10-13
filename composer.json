@@ -32,7 +32,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "ostark\\craft-async-queue\\": "src/"
+            "ostark\\AsyncQueue\\": "src/"
         }
     },
     "extra": {

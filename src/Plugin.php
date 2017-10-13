@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2017 Oliver Stark
  */
 
-namespace ostark\asyncqueue;
+namespace ostark\AsyncQueue;
 
 
 use Craft;
