@@ -13,10 +13,8 @@ namespace ostark\asyncqueue;
 
 use Craft;
 use craft\base\Plugin as BasePlugin;
-use craft\events\ResolveResourcePathEvent;
-use craft\services\Resources;
-use ostark\asyncqueue\Queue as AsyncQueue;
-use yii\base\Event;
+use Symfony\Component\Process\Process;
+use yii\queue\PushEvent;
 
 
 /**
@@ -36,60 +34,64 @@ use yii\base\Event;
  */
 class Plugin extends BasePlugin
 {
-    // Static Properties
-    // =========================================================================
-
     /**
-     * Static property that is an instance of this plugin class so that it can be accessed via
-     * AsyncQueue::$plugin
-     *
-     * @var Plugin
-     */
-    public static $plugin;
-
-    // Public Methods
-    // =========================================================================
-
-    /**
-     * Set our $plugin static property to this class so that it can be accessed via
-     * AsyncQueue::$plugin
-     *
-     * Called after the plugin class is instantiated; do any one-time initialization
-     * here such as hooks and events.
-     *
-     * If you have a '/vendor/autoload.php' file, it will be loaded for you automatically;
-     * you do not need to load it in your init() method.
-     *
+     * Init plugin
      */
     public function init()
     {
         parent::init();
-        self::$plugin = $this;
 
-        // Replace default queue
-        Craft::$app->setComponents([
-            'queue' => AsyncQueue::class
-        ]);
+        // Listen to
+        PushEvent::on(Queue::class, Queue::EVENT_AFTER_PUSH, function (PushEvent $event) {
 
-        Craft::$app->getConfig()->getGeneral()->runQueueAutomatically = false;
+            // Prevent frontend queue runner
+            Craft::$app->getConfig()->getGeneral()->runQueueAutomatically = false;
 
+            // Run queue in the background
+            $this->startBackgroundProcess((string)$event->id);
+        });
 
-        // Inject some jobs for demo purpose
-        if (Craft::$app instanceof \craft\web\Application)
-        {
-            if (\Craft::$app->request->fullPath === 'services') {
-                Craft::$app->getQueue()->push(new DemoJob());
-                Craft::$app->getQueue()->push(new DemoJob());
-                Craft::$app->getQueue()->push(new DemoJob());
-                Craft::$app->getQueue()->push(new DemoJob());
-                Craft::$app->getQueue()->push(new DemoJob());
-                Craft::$app->getQueue()->push(new DemoJob());
-                Craft::$app->getQueue()->push(new DemoJob());
-                Craft::$app->getQueue()->push(new DemoJob());
-                Craft::$app->getQueue()->push(new DemoJob());
-            }
+    }
+
+    /**
+     * @param string $id
+     */
+    protected function startBackgroundProcess(string $id)
+    {
+        $process = new Process($this->getCommand($id), CRAFT_BASE_PATH);
+        $process->run();
+    }
+
+    /**
+     * Construct queue command
+     *
+     * @param string $id
+     *
+     * @return string
+     */
+    protected function getCommand(string $id): string
+    {
+        $cmd    = "%s craft queue/exec %s 0 1 --verbose=1";
+        $cmd    = $this->getBackgroundCommand($cmd);
+        $binary = getenv('PATH_PHP_BINARY') ?? '/usr/bin/php';
+
+        return sprintf($cmd, $binary, $id);
+    }
+
+    /**
+     * Extend command with background syntax
+     *
+     * @param string $cmd
+     *
+     * @return string
+     */
+    protected function getBackgroundCommand(string $cmd): string
+    {
+        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+            return 'start /B ' . $cmd . ' > NUL';
+        } else {
+            return $cmd . ' > /dev/null 2>&1 &';
         }
-
     }
 
 }

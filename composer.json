@@ -2,13 +2,13 @@
     "name": "ostark/craft-async-queue",
     "description": "A queue handler that moves queue execution to a non-blocking background process",
     "type": "craft-plugin",
-    "version": "1.0.3",
+    "version": "1.0.0",
     "keywords": [
         "craft",
         "cms",
         "craftcms",
         "craft-plugin",
-        "asyncqueue"
+        "queue"
     ],
     "support": {
         "docs": "https://github.com/ostark/craft-async-queue/blob/master/README.md",
@@ -18,7 +18,7 @@
     "authors": [
         {
             "name": "Oliver Stark",
-            "homepage": "http://www.fortrabbit.com"
+            "homepage": "https://www.fortrabbit.com"
         }
     ],
     "require": {
@@ -32,13 +32,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "ostark\\asyncqueue\\": "src/"
+            "ostark\\craft-async-queue\\": "src/"
         }
     },
     "extra": {
         "name": "AsyncQueue",
         "handle": "async-queue",
-        "schemaVersion": "1.0.0",
         "hasCpSettings": false,
         "hasCpSection": false,
         "changelogUrl": "https://raw.githubusercontent.com/ostark/craft-async-queue/master/CHANGELOG.md"

@@ -1,43 +1,10 @@
-# DON'T USE IN PRODUCTION!! AsyncQueue plugin for Craft CMS 3.x
+# Async (Background) Queue
 
-A queue handler that moves queue execution to a non-blocking background process
-
-![Screenshot](resources/img/plugin-logo.png)
-
-## Requirements
-
-This plugin requires Craft CMS 3.0.0-beta.23 or later.
+Inpired by this discussion
+https://github.com/craftcms/cms/issues/1952
 
 ## Installation
 
-To install the plugin, follow these instructions.
+1. Install with Composer via `composer require ostark/craft-async-queue` from your project directory
+2. Install plugin with this command `php ./craft install/plugin async-queue` or in the Craft Control Panel under Settings > Plugins
 
-1. Open your terminal and go to your Craft project:
-
-        cd /path/to/project
-
-2. Then tell Composer to load the plugin:
-
-        composer require ostark/async-queue
-
-3. In the Control Panel, go to Settings → Plugins and click the “Install” button for AsyncQueue.
-
-## AsyncQueue Overview
-
--Insert text here-
-
-## Configuring AsyncQueue
-
-set the ENV var PATH_PHP_BINARY to change the path to the php binary 
-
-## Using AsyncQueue
-
--Insert text here-
-
-## AsyncQueue Roadmap
-
-Some things to do, and ideas for potential features:
-
-* Release it
-
-Brought to you by [Oliver Stark](http://www.fortrabbit.com)
