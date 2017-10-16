@@ -1,12 +1,18 @@
 # Async (Background) Queue
 
 With Craft's job queue you can run heavy tasks in the background. Unfortunately, this is not entirely true, when `runQueueAutomatically => true` (default), the job queue is handled by a ajax (FPM) call.
-With many jobs in the queue and limited PHP-FPM processes this break your site.  
+With many jobs in the queue and limited PHP-FPM processes this can break your site.  
 
 This plugin replaces Craft's default queue handler and moves queue execution to a non-blocking background process.
-The command `craft queue/run` gets executed right after you push a Job to the queue`. 
+The command `craft queue/run` gets executed right after you push a Job to the queue. 
 
 [Here](https://github.com/craftcms/cms/issues/1952) you can find the initial discussion I started at `craftcms/cms`.
+
+## Requirements
+
+* Craft 3
+* Permissions to execute a php binary
+* proc_open()
 
 ## Installation
 
