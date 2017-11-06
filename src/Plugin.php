@@ -13,6 +13,7 @@ namespace ostark\AsyncQueue;
 
 use Craft;
 use craft\base\Plugin as BasePlugin;
+use craft\queue\BaseJob;
 use craft\queue\Queue;
 use Symfony\Component\Process\Process;
 use yii\queue\PushEvent;
@@ -41,6 +42,13 @@ class Plugin extends BasePlugin
             // Prevent frontend queue runner
             Craft::$app->getConfig()->getGeneral()->runQueueAutomatically = false;
 
+            if ($event->job instanceof BaseJob) {
+                Craft::info(
+                    sprintf("Handling PushEvent for '%s' job", $event->job->getDescription()),
+                    'craft-async-queue'
+                );
+            }
+
             // Run queue in the background
             $this->startBackgroundProcess();
         });
@@ -53,7 +61,15 @@ class Plugin extends BasePlugin
      */
     protected function startBackgroundProcess()
     {
-        $process = new Process($this->getCommand(), CRAFT_BASE_PATH);
+        $cmd = $this->getCommand();
+        $cwd = CRAFT_BASE_PATH;
+
+        Craft::info(
+            sprintf("new Process('%s', '%s')", $cmd, $cwd),
+            'craft-async-queue'
+        );
+
+        $process = new Process($cmd, CRAFT_BASE_PATH);
         $process->run();
     }
 
