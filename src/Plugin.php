@@ -53,6 +53,8 @@ class Plugin extends BasePlugin
             // Run queue in the background
             $this->startBackgroundProcess();
         });
+        
+        // TODO: Listen to failed jobs being restarted/retried as well 
 
     }
 
