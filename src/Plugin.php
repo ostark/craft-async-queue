@@ -16,6 +16,7 @@ use craft\base\Plugin as BasePlugin;
 use craft\queue\BaseJob;
 use craft\queue\Queue;
 use Symfony\Component\Process\Process;
+use Symfony\Component\Process\PhpExecutableFinder;
 use yii\queue\PushEvent;
 
 
@@ -63,14 +64,28 @@ class Plugin extends BasePlugin
     {
         $cmd = $this->getCommand();
         $cwd = CRAFT_BASE_PATH;
-
+ 
         Craft::info(
-            sprintf("new Process('%s', '%s')", $cmd, $cwd),
-            'craft-async-queue'
+            array(
+                'cmd' => $cmd,
+                'cwd' => $cwd
+            ), 'craft-async-queue'
         );
 
-        $process = new Process($cmd, CRAFT_BASE_PATH);
-        $process->run();
+        $process = new Process($cmd, $cwd);
+
+        try {
+            $process->run();
+        } catch (\Exception $e) {
+            Craft::info($e, 'craft-async-queue');
+        }
+
+        Craft::info(
+            sprintf("Job status: %s. Exit code: %s",
+                $process->getStatus(),
+                $process->getExitCodeText() ?: '(not terminated)'
+            ), 'craft-async-queue'
+        );
     }
 
 
@@ -79,13 +94,19 @@ class Plugin extends BasePlugin
      *
      * @return string
      */
-    protected function getCommand(): string
+    protected function getCommand()
     {
-        $cmd    = "%s craft queue/run";
-        $cmd    = $this->getBackgroundCommand($cmd);
-        $binary = getenv('PATH_PHP_BINARY') ?? '/usr/bin/php';
-
-        return sprintf($cmd, $binary);
+        $executableFinder = new PhpExecutableFinder();
+        if (false === $php = $executableFinder->find(false)) {
+            return null;
+        } else {
+            $cmd = array_merge(
+                array('nice', $php),
+                $executableFinder->findArguments(),
+                array('craft', 'queue/run')
+            );
+            return $this->getBackgroundCommand(implode(' ', $cmd));
+        }
     }
 
 
@@ -104,5 +125,6 @@ class Plugin extends BasePlugin
             return $cmd . ' > /dev/null 2>&1 &';
         }
     }
+
 
 }
