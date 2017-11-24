@@ -1,11 +1,12 @@
 # AsyncQueue Changelog
 
-All notable changes to this project will be documented in this file.
-
-The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
+All notable changes to this project will be documented in this file..
 
 
-## [Unreleased]
+## [1.1.3] - 2017-11-15
+### Changed
+- Now we use Symfony\Component\Process\PhpExecutableFinder (thanks @phoob)
+
 
 ## [1.1.2] - 2017-11-06
 ### Added
@@ -15,8 +16,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ## [1.1.0] - 2017-10-13
 
 ### Changed
-- added AFTER_PUSH listener
-- removed custom Queue class
+- Added AFTER_PUSH listener
+- Removed custom Queue class
 
 
 ## 1.0.0 - 2017-08-22
