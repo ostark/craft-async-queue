@@ -1,7 +1,10 @@
 # AsyncQueue Changelog
 
-All notable changes to this project will be documented in this file..
+All notable changes to this project will be documented in this file.
 
+## [1.1.4] - 2017-11-25
+### Changed
+- Requires Craft 3.0.0-RC1
 
 ## [1.1.3] - 2017-11-15
 ### Changed
