@@ -21,9 +21,9 @@ The command `craft queue/run` gets executed right after you push a Job to the qu
 
 ## Configuration (optional)
 
-The plugin expects the `php` binary in `/usr/bin/`. If the binary is located somewhere else, you can overwrite the default with the `PATH_PHP_BINARY ENV var, e.g. in your .env file like this:
+The plugin uses [symfony/process](https://github.com/symfony/process) to execute the `php` binary. Usually the binary is located in `/usr/bin/`, but other other common locations are autodetected as well. With the ENV var `PHP_BINARY` you can explicitly set the path e.g. in your .env file like this:
 ```
-PATH_PHP_BINARY=/usr/local/Cellar/php71/7.1.0_11/bin/php'
+PHP_BINARY=/usr/local/Cellar/php71/7.1.0_11/bin/php'
 ```
 
 ## Under the hood: Process list
