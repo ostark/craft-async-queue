@@ -52,7 +52,7 @@ class Plugin extends BasePlugin
             if ($event->job instanceof BaseJob) {
                 Craft::trace(
                     Craft::t(
-                        'craft-async-queue',
+                        'async-queue',
                         'Handling PushEvent for {job} job', ['job' => $event->job->getDescription()]
                     ),
                     __METHOD__
@@ -77,7 +77,7 @@ class Plugin extends BasePlugin
 
             Craft::trace(
                 Craft::t(
-                    'craft-async-queue',
+                    'async-queue',
                     'Background process running'
                 ),
                 __METHOD__
@@ -100,7 +100,7 @@ class Plugin extends BasePlugin
 
         Craft::trace(
             Craft::t(
-                'craft-async-queue',
+                'async-queue',
                 'Job status: {status}. Exit code: {code}', ['status' => $process->getStatus(), 'code' => $process->getExitCodeText()]
             ),
             __METHOD__

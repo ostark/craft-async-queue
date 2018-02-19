@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 ### Changed
 - Prevent multiple background processes
 - No `nice` on Windows
-- changed log level from `info` to `trace 
+- changed log level from `info` to `trace` 
 
 ## [1.1.5] - 2017-12-05
 ### Changed

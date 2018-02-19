@@ -22,4 +22,7 @@
  */
 return [
     'AsyncQueue plugin loaded' => 'AsyncQueue plugin loaded',
+    'Background process running' => 'Background process running',
+    'Job status: {status}. Exit code: {code}' => 'Job status: {status}. Exit code: {code}',
+    'Handling PushEvent for {job} job' => 'Handling PushEvent for {job} job',
 ];
