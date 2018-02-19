@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.2.0] - 2018-01-26
+## [1.2.0] - 2018-02-19
 ### Changed
 - Prevent multiple background processes
 - No `nice` on Windows
