@@ -30,6 +30,12 @@ use yii\queue\PushEvent;
  */
 class Plugin extends BasePlugin
 {
+
+    /**
+     * @var bool mutex
+     */
+    protected $inProgress = false;
+
     /**
      * Init plugin
      */
@@ -40,54 +46,67 @@ class Plugin extends BasePlugin
         // Listen to
         PushEvent::on(Queue::class, Queue::EVENT_AFTER_PUSH, function (PushEvent $event) {
 
-            // Prevent frontend queue runner
+            // Disable frontend queue runner
             Craft::$app->getConfig()->getGeneral()->runQueueAutomatically = false;
 
             if ($event->job instanceof BaseJob) {
-                Craft::info(
-                    sprintf("Handling PushEvent for '%s' job", $event->job->getDescription()),
-                    'craft-async-queue'
+                Craft::trace(
+                    Craft::t(
+                        'craft-async-queue',
+                        'Handling PushEvent for {job} job', ['job' => $event->job->getDescription()]
+                    ),
+                    __METHOD__
                 );
             }
 
             // Run queue in the background
             $this->startBackgroundProcess();
         });
-        
-        // TODO: Listen to failed jobs being restarted/retried as well 
 
     }
 
 
     /**
      * Runs craft queue/run in the background
+     *
+     * @return bool
      */
     protected function startBackgroundProcess()
     {
+        if ($this->inProgress) {
+
+            Craft::trace(
+                Craft::t(
+                    'craft-async-queue',
+                    'Background process running'
+                ),
+                __METHOD__
+            );
+
+            return false;
+        }
+
         $cmd = $this->getCommand();
         $cwd = CRAFT_BASE_PATH;
- 
-        Craft::info(
-            array(
-                'cmd' => $cmd,
-                'cwd' => $cwd
-            ), 'craft-async-queue'
-        );
 
         $process = new Process($cmd, $cwd);
 
         try {
             $process->run();
+            $this->inProgress = true;
         } catch (\Exception $e) {
-            Craft::info($e, 'craft-async-queue');
+            Craft::error($e, __METHOD__);
         }
 
-        Craft::info(
-            sprintf("Job status: %s. Exit code: %s",
-                $process->getStatus(),
-                $process->getExitCodeText() ?: '(not terminated)'
-            ), 'craft-async-queue'
+        Craft::trace(
+            Craft::t(
+                'craft-async-queue',
+                'Job status: {status}. Exit code: {code}', ['status' => $process->getStatus(), 'code' => $process->getExitCodeText()]
+            ),
+            __METHOD__
         );
+
+        return $this->inProgress;
     }
 
 
@@ -103,10 +122,11 @@ class Plugin extends BasePlugin
             return null;
         } else {
             $cmd = array_merge(
-                array('nice', $php),
+                [$php],
                 $executableFinder->findArguments(),
-                array('craft', 'queue/run')
+                ['craft', 'queue/run -v']
             );
+
             return $this->getBackgroundCommand(implode(' ', $cmd));
         }
     }
@@ -124,7 +144,7 @@ class Plugin extends BasePlugin
         if (defined('PHP_WINDOWS_VERSION_BUILD')) {
             return 'start /B ' . $cmd . ' > NUL';
         } else {
-            return $cmd . ' > /dev/null 2>&1 &';
+            return 'nice ' . $cmd . ' > /dev/null 2>&1 &';
         }
     }
 

@@ -1,46 +1,39 @@
 {
-    "name": "ostark/craft-async-queue",
-    "description": "A queue handler that moves queue execution to a non-blocking background process",
-    "type": "craft-plugin",
-    "version": "1.1.5",
-    "minimum-stability": "RC",
-    "keywords": [
-        "craft",
-        "cms",
-        "craftcms",
-        "craft-plugin",
-        "queue"
-    ],
-    "support": {
-        "docs": "https://github.com/ostark/craft-async-queue/blob/master/README.md",
-        "issues": "https://github.com/ostark/craft-async-queue/issues"
-    },
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Oliver Stark",
-            "homepage": "https://www.fortrabbit.com"
-        }
-    ],
-    "require": {
-        "craftcms/cms": "^3.0.0-RC1"
-    },
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://asset-packagist.org"
-        }
-    ],
-    "autoload": {
-        "psr-4": {
-            "ostark\\AsyncQueue\\": "src/"
-        }
-    },
-    "extra": {
-        "name": "AsyncQueue",
-        "handle": "async-queue",
-        "hasCpSettings": false,
-        "hasCpSection": false,
-        "changelogUrl": "https://raw.githubusercontent.com/ostark/craft-async-queue/master/CHANGELOG.md"
+  "name": "ostark/craft-async-queue",
+  "description": "A queue handler that moves queue execution to a non-blocking background process",
+  "type": "craft-plugin",
+  "version": "1.2.0",
+  "keywords": [
+    "craft",
+    "cms",
+    "craftcms",
+    "craft-plugin",
+    "queue"
+  ],
+  "support": {
+    "docs": "https://github.com/ostark/craft-async-queue/blob/master/README.md",
+    "issues": "https://github.com/ostark/craft-async-queue/issues"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Oliver Stark",
+      "homepage": "https://www.fortrabbit.com"
     }
+  ],
+  "require": {
+    "craftcms/cms": "^3.0.0-RC1"
+  },
+  "autoload": {
+    "psr-4": {
+      "ostark\\AsyncQueue\\": "src/"
+    }
+  },
+  "extra": {
+    "name": "AsyncQueue",
+    "handle": "async-queue",
+    "hasCpSettings": false,
+    "hasCpSection": false,
+    "changelogUrl": "https://raw.githubusercontent.com/ostark/craft-async-queue/master/CHANGELOG.md"
+  }
 }

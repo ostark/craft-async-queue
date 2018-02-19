@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.0] - 2018-01-26
+### Changed
+- Prevent multiple background processes
+- No `nice` on Windows
+- changed log level from `info` to `trace 
+
 ## [1.1.5] - 2017-12-05
 ### Changed
 - Requires Craft 3.0.0-RC1
