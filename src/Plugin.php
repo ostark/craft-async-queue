@@ -14,9 +14,12 @@ namespace ostark\AsyncQueue;
 use Craft;
 use craft\base\Plugin as BasePlugin;
 use craft\queue\BaseJob;
+use craft\queue\Command;
 use craft\queue\Queue;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\PhpExecutableFinder;
+use yii\base\ActionEvent;
+use yii\base\Event;
 use yii\queue\PushEvent;
 
 
@@ -31,6 +34,9 @@ use yii\queue\PushEvent;
 class Plugin extends BasePlugin
 {
 
+    const LOCK_NAME = 'async-queue-lock';
+    const LOCK_TIMEOUT = 60;
+
     /**
      * @var bool mutex
      */
@@ -41,7 +47,14 @@ class Plugin extends BasePlugin
      */
     public function init()
     {
+
         parent::init();
+
+        Event::on(Command::class, Command::EVENT_AFTER_ACTION, function(ActionEvent $event) {
+            if ('run' === $event->action->id) {
+                $this->setInProgress(false);
+            }
+        });
 
         // Listen to
         PushEvent::on(Queue::class, Queue::EVENT_AFTER_PUSH, function (PushEvent $event) {
@@ -73,16 +86,7 @@ class Plugin extends BasePlugin
      */
     protected function startBackgroundProcess()
     {
-        if ($this->inProgress) {
-
-            Craft::trace(
-                Craft::t(
-                    'async-queue',
-                    'Background process running'
-                ),
-                __METHOD__
-            );
-
+        if ($this->isInProgress()) {
             return false;
         }
 
@@ -93,7 +97,7 @@ class Plugin extends BasePlugin
 
         try {
             $process->run();
-            $this->inProgress = true;
+            $this->setInProgress(true);
         } catch (\Exception $e) {
             Craft::error($e, __METHOD__);
         }
@@ -106,7 +110,7 @@ class Plugin extends BasePlugin
             __METHOD__
         );
 
-        return $this->inProgress;
+        return true;
     }
 
 
@@ -146,6 +150,34 @@ class Plugin extends BasePlugin
         } else {
             return 'nice ' . $cmd . ' > /dev/null 2>&1 &';
         }
+    }
+
+    protected function isInProgress()
+    {
+        if (\Craft::$app->getCache()->get(self::LOCK_NAME)) {
+             Craft::trace(
+                 Craft::t(
+                     'async-queue',
+                     'Background process running'
+                 ),
+                 __METHOD__
+             );
+             return true;
+         }
+
+        return false;
+    }
+
+    protected function setInProgress($progress = true)
+    {
+        // set
+        if ($progress) {
+            return \Craft::$app->getCache()->set(self::LOCK_NAME, self::LOCK_NAME, self::LOCK_TIMEOUT);
+        }
+
+        // remove
+        return \Craft::$app->getCache()->delete(self::LOCK_NAME);
+
     }
 
 
