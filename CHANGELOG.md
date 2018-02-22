@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.0] - 2018-02-22
+### Changed
+- Process pool implemented to restrict concurrency
+- Concurrency configurable via `ASYNC_QUEUE_CONCURRENCY` ENV var (default: 2)
+- Lifetime of pool configurable via `ASYNC_QUEUE_POOL_LIFETIME` ENV var (default: 3600 seconds) 
+
 ## [1.2.0] - 2018-02-19
 ### Changed
 - Prevent multiple background processes
