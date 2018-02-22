@@ -75,8 +75,7 @@ class QueuePool
 
         if ($poolUsage > 1) {
             $this->cache->set(self::CACHE_KEY, $poolUsage - 1, $this->lifetime);
-        }
-        else {
+        } else {
             $this->cache->delete(self::CACHE_KEY);
         }
     }
