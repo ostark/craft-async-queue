@@ -25,6 +25,14 @@ The plugin uses [symfony/process](https://github.com/symfony/process) to execute
 ```
 PHP_BINARY="/usr/local/Cellar/php71/7.1.0_11/bin/php"
 ```
+By default `2` background processes handle the queue. With the `ASYNC_QUEUE_CONCURRENCY` ENV var you can modify this behaviour
+```
+# No concurrency
+ASYNC_QUEUE_CONCURRENCY=1
+
+# max 5 background processes
+ASYNC_QUEUE_CONCURRENCY=5
+```
 
 ## Under the hood: Process list
 
