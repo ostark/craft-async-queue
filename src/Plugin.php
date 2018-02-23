@@ -41,7 +41,7 @@ class Plugin extends BasePlugin
         // Register plugin components
         $this->setComponents([
             'async_handler' => QueueHandler::class,
-            'async_pool'    => QueuePool::class,
+            'async_pool'    => ProcessPool::class,
         ]);
 
         // Tell yii about the concrete implementation of CacheInterface
@@ -78,6 +78,7 @@ class Plugin extends BasePlugin
                 }
             }
         );
+
     }
 
 
@@ -93,9 +94,9 @@ class Plugin extends BasePlugin
     }
 
     /**
-     * @return \ostark\AsyncQueue\QueuePool
+     * @return \ostark\AsyncQueue\ProcessPool
      */
-    public function getPool(): QueuePool
+    public function getPool(): ProcessPool
     {
         return $this->get('async_pool');
     }

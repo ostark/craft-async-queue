@@ -3,14 +3,14 @@
 use yii\caching\CacheInterface;
 
 /**
- * QueuePool
+ * ProcessPool
  *
  * @author    Oliver Stark
  * @package   AsyncQueue
  * @since     1.3.0
  *
  */
-class QueuePool
+class ProcessPool
 {
 
     const CACHE_KEY = 'async-queue-pool';
