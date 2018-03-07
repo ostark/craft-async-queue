@@ -46,21 +46,22 @@ class QueueHandler
      * Construct queue command
      *
      * @return string
+     * @throws \Exception
      */
     protected function getCommand()
     {
         $executableFinder = new PhpExecutableFinder();
         if (false === $php = $executableFinder->find(false)) {
-            return null;
-        } else {
-            $cmd = array_merge(
-                [$php],
-                $executableFinder->findArguments(),
-                ['craft', 'queue/run -v']
-            );
-
-            return $this->getBackgroundCommand(implode(' ', $cmd));
+            throw new \Exception('Unable to find php binary.');
         }
+
+        $cmd = array_merge(
+            [$php],
+            $executableFinder->findArguments(),
+            ['craft', 'queue/run -v']
+        );
+
+        return $this->getBackgroundCommand(implode(' ', $cmd));
     }
 
 

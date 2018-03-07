@@ -44,15 +44,15 @@ class Settings extends Model
     /**
      * Env var access with default
      *
-     * @param      $name
-     * @param null $default
+     * @param string $name
+     * @param mixed  $default
      *
-     * @return array|false|null|string
+     * @return false|string
      */
     protected function env($name, $default = null)
     {
         if (getenv($name) === false) {
-            return $default;
+            return (string)$default;
         }
 
         return getenv($name);
