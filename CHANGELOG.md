@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.1] - 2018-04-05
+### Changed
+- Changed version constraint to `craftcms/cms: ^3.0.0`
+
 ## [1.3.0] - 2018-02-22
 ### Changed
 - Process pool implemented to restrict concurrency

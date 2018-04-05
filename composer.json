@@ -2,7 +2,7 @@
   "name": "ostark/craft-async-queue",
   "description": "A queue handler that moves queue execution to a non-blocking background process",
   "type": "craft-plugin",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "keywords": [
     "craft",
     "cms",
@@ -22,7 +22,7 @@
     }
   ],
   "require": {
-    "craftcms/cms": "^3.0.0-RC1"
+    "craftcms/cms": "^3.0.0"
   },
   "autoload": {
     "psr-4": {
