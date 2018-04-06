@@ -2,4 +2,5 @@ parameters:
 	autoload_files:
 		- %currentWorkingDirectory%/vendor/yiisoft/yii2/Yii.php
 		- %currentWorkingDirectory%/vendor/craftcms/cms/src/Craft.php
-
+	ignoreErrors:
+		- '#Constant CRAFT_BASE_PATH not found#'
