@@ -4,3 +4,4 @@ parameters:
 		- %currentWorkingDirectory%/vendor/craftcms/cms/src/Craft.php
 	ignoreErrors:
 		- '#Constant CRAFT_BASE_PATH not found#'
+		- '#Method ostark\AsyncQueue\\Plugin::getHandler() should return ostark\\AsyncQueue\\QueueHandler but returns object|null#'

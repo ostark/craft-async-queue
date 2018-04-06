@@ -89,6 +89,7 @@ class Plugin extends BasePlugin
      */
     public function getHandler(): QueueHandler
     {
+
         return $this->get('async_handler');
     }
 

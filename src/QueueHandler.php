@@ -28,10 +28,10 @@ class QueueHandler
         try {
             $process->run();
         } catch (\Exception $e) {
-            Craft::error($e, __METHOD__);
+            Craft::error($e->getMessage(), __METHOD__);
         }
 
-        Craft::trace(
+        Craft::debug(
             Craft::t(
                 'async-queue',
                 'Job status: {status}. Exit code: {code}', ['status' => $process->getStatus(), 'code' => $process->getExitCodeText()]

@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.2] - 2018-04-06
+### Fixed
+- Delegate Exception::getMessage() instead of Exception to error log
+
+### Changed
+- Increased phpstan analyse level from 1 to 5
+- Excluded expected errors from phpstan
+- Use `Craft::debug()` instead of deprecated `Craft::trace()`
+
 ## [1.3.1] - 2018-04-05
 ### Changed
 - Changed version constraint to `craftcms/cms: ^3.0.0`
@@ -37,7 +46,6 @@ All notable changes to this project will be documented in this file.
 
 
 ## [1.1.0] - 2017-10-13
-
 ### Changed
 - Added AFTER_PUSH listener
 - Removed custom Queue class
