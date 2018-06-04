@@ -55,15 +55,26 @@ class QueueHandler
             throw new \Exception('Unable to find php binary.');
         }
 
-        $cmd = array_merge(
-            [$php],
-            $executableFinder->findArguments(),
-            ['craft', 'queue/run -v']
-        );
+        $php = $this->preparePath($php);
 
-        return $this->getBackgroundCommand(implode(' ', $cmd));
+        return $this->getBackgroundCommand(implode(' ', [$php, 'craft', 'queue/run', '-v']));
     }
 
+
+    /**
+     * @param $path
+     *
+     * @return string
+     */
+    protected function preparePath($path)
+    {
+        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+            return '"' . $path . '"';
+        }
+
+        return $path;
+
+    }
 
     /**
      * Extend command with background syntax
@@ -76,8 +87,10 @@ class QueueHandler
     {
         if (defined('PHP_WINDOWS_VERSION_BUILD')) {
             return 'start /B ' . $cmd . ' > NUL';
-        } else {
-            return 'nice ' . $cmd . ' > /dev/null 2>&1 &';
         }
+
+        return 'nice ' . $cmd . ' > /dev/null 2>&1 &';
+
     }
+
 }
