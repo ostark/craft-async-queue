@@ -1,5 +1,11 @@
 # Async (Background) Queue
 
+[![Latest Stable Version](https://poser.pugx.org/ostark/craft-async-queue/v/stable)](https://packagist.org/packages/ostark/craft-async-queue)
+[![Total Downloads](https://poser.pugx.org/ostark/craft-async-queue/downloads)](https://packagist.org/packages/ostark/craft-async-queue)
+[![Monthly Downloads](https://poser.pugx.org/ostark/craft-async-queue/d/monthly)](https://packagist.org/packages/ostark/craft-async-queue)
+
+
+
 With Craft's job queue you can run heavy tasks in the background. Unfortunately, this is not entirely true, when `runQueueAutomatically => true` (default), the job queue is handled by a ajax (FPM) call.
 With many jobs in the queue and limited PHP-FPM processes this can break your site.  
 
