@@ -14,6 +14,10 @@ The command `craft queue/run` gets executed right after you push a Job to the qu
 
 [Here](https://github.com/craftcms/cms/issues/1952) you can find the initial discussion I started at `craftcms/cms`.
 
+## Sponsor
+
+Development happens in my free time, but also during working hours. Thanks [fortrabbit.com](https://www.fortrabbit.com/craft-hosting)!
+
 ## Requirements
 
 * Craft 3
