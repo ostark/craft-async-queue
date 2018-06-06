@@ -56,7 +56,7 @@ class QueueHandler
         }
 
         $cmd = array_merge(
-            [$php],
+            ['"' . $php . '"'],
             $executableFinder->findArguments(),
             ['craft', 'queue/run -v']
         );
