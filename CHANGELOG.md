@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.3] - 2018-06-15
+### Fixed
+- Better Windows support, thanks @ackwell
+
 ## [1.3.2] - 2018-04-06
 ### Fixed
 - Delegate Exception::getMessage() instead of Exception to error log

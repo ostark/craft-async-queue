@@ -50,8 +50,10 @@ class QueueHandler
      */
     protected function getCommand()
     {
-        $executableFinder = new PhpExecutableFinder();
-        if (false === $php = $executableFinder->find(false)) {
+        $finder = new PhpExecutableFinder();
+        $php    = $finder->find(false);
+
+        if (false === $php) {
             throw new \Exception('Unable to find php binary.');
         }
 
@@ -62,7 +64,9 @@ class QueueHandler
 
 
     /**
-     * @param $path
+     * Quote path for windows or keep it as it is
+     *
+     * @param string $path
      *
      * @return string
      */
