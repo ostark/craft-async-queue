@@ -22,7 +22,7 @@ class QueueHandler
     {
         $cmd = $this->getCommand();
         $cwd = CRAFT_BASE_PATH;
-
+        file_put_contents('/var/www/app/storage/logs/async-queue.log', $cmd . "\n", FILE_APPEND);
         $process = new Process($cmd, $cwd);
 
         try {

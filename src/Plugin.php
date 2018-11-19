@@ -15,6 +15,7 @@ use craft\base\Plugin as BasePlugin;
 use craft\queue\BaseJob;
 use craft\queue\Command;
 use craft\queue\Queue;
+use yii\base\Controller;
 use yii\base\ActionEvent;
 use yii\base\Event;
 use yii\caching\CacheInterface;
@@ -74,6 +75,18 @@ class Plugin extends BasePlugin
             Command::EVENT_AFTER_ACTION,
             function (ActionEvent $event) {
                 if ('run' === $event->action->id) {
+                    file_put_contents('/var/www/app/storage/logs/async-queue.log', "COMMAND::EVENT_AFTER_ACTION TRIGGERED!!!\n", FILE_APPEND);
+                    $this->getPool()->decrement();
+                }
+            }
+        );
+
+        Event::on(
+            Controller::class,
+            Controller::EVENT_AFTER_ACTION,
+            function (ActionEvent $event) {
+                if ('run' === $event->action->id) {
+                    file_put_contents('/var/www/app/storage/logs/async-queue.log', "CONTROLLER::EVENT_AFTER_ACTION TRIGGERED!!!\n", FILE_APPEND);
                     $this->getPool()->decrement();
                 }
             }

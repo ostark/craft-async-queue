@@ -39,7 +39,7 @@ class ProcessPool
      */
     public function __construct(Settings $settings, CacheInterface $cache)
     {
-        $this->maxItems = $settings->concurrency;
+        $this->maxItems = 500; //$settings->concurrency; hardcoding for test
         $this->lifetime = $settings->poolLifetime;
         $this->cache    = $cache;
     }
@@ -52,7 +52,7 @@ class ProcessPool
     public function canIUse()
     {
         $poolUsage = $this->cache->get(self::CACHE_KEY) ?: 0;
-
+        file_put_contents('/var/www/app/storage/logs/async-queue.log', "In use {$this->cache->get(self::CACHE_KEY)}\n", FILE_APPEND);
         return ($poolUsage < $this->maxItems) ? true : false;
 
     }
