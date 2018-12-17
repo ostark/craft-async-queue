@@ -2,18 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.3.3] - 2018-06-15
-### Fixed
-- Better Windows support, thanks @ackwell
-
-## [1.3.2] - 2018-04-06
-### Fixed
-- Delegate Exception::getMessage() instead of Exception to error log
+## [1.4.0] - 2018-12-17
 
 ### Changed
-- Increased phpstan analyse level from 1 to 5
-- Excluded expected errors from phpstan
-- Use `Craft::debug()` instead of deprecated `Craft::trace()`
+- Added `symfony/process:^4.0` as a direct dependency
+- Added logging of `ProcessPool` access
 
 ## [1.3.1] - 2018-04-05
 ### Changed

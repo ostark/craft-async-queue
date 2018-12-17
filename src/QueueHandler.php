@@ -34,9 +34,12 @@ class QueueHandler
         Craft::debug(
             Craft::t(
                 'async-queue',
-                'Job status: {status}. Exit code: {code}', ['status' => $process->getStatus(), 'code' => $process->getExitCodeText()]
+                'QueueHandler::startBackgroundProcess() (Job status: {status}. Exit code: {code})', [
+                    'status' => $process->getStatus(),
+                    'code'   => $process->getExitCodeText()
+                ]
             ),
-            __METHOD__
+            'async-queue'
         );
 
     }

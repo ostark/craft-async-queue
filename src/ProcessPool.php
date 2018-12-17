@@ -1,5 +1,6 @@
 <?php namespace ostark\AsyncQueue;
 
+use Craft;
 use yii\caching\CacheInterface;
 
 /**
@@ -47,37 +48,68 @@ class ProcessPool
     /**
      * Check if there is room
      *
+     * @param mixed $context
+     *
      * @return bool
      */
-    public function canIUse()
+    public function canIUse($context = null)
     {
         $poolUsage = $this->cache->get(self::CACHE_KEY) ?: 0;
-
+        $this->logPoolUsage($poolUsage, $context);
         return ($poolUsage < $this->maxItems) ? true : false;
 
     }
 
     /**
      * Add one item to pool
+     *
+     * @param mixed $context
+     *
      */
-    public function increment()
+    public function increment($context = null)
     {
         $poolUsage = $this->cache->get(self::CACHE_KEY) ?: 0;
+        $this->logPoolUsage($poolUsage, $context);
         $this->cache->set(self::CACHE_KEY, $poolUsage + 1, $this->lifetime);
     }
 
     /**
      * Remove one item from pool
+     *
+     * @param mixed $context
      */
-    public function decrement()
+    public function decrement($context = null)
     {
         $poolUsage = $this->cache->get(self::CACHE_KEY) ?: 0;
-
+        $this->logPoolUsage($poolUsage, $context);
         if ($poolUsage > 1) {
             $this->cache->set(self::CACHE_KEY, $poolUsage - 1, $this->lifetime);
         } else {
             $this->cache->delete(self::CACHE_KEY);
         }
+    }
+
+    /**
+     * @param int  $currentUsage
+     * @param mixed $context
+     */
+    protected function logPoolUsage($currentUsage, $context = null)
+    {
+        if (!YII_DEBUG) {
+            return;
+        }
+        Craft::debug(
+            Craft::t(
+                'async-queue',
+                'ProcessPool::{method}() ({currentUsage} of {max}, context: {context})', [
+                    'currentUsage' => $currentUsage,
+                    'max'          => $this->maxItems,
+                    'method'       => debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, 2)[1]['function'],
+                    'context'      => print_r($context, true)
+                ]
+            ),
+            'async-queue'
+        );
     }
 
 }
