@@ -23,7 +23,7 @@ Development happens in my free time, but also during working hours. Thanks [fort
 * Craft 3
 * Permissions to execute a php binary
 * proc_open()
-* **PHP ^7.1** (for PHP 5.6 / 7.0 use `ostark/craft-async-queue:1.3.*`)
+* **PHP ^7.1** (for PHP 7.0 use `ostark/craft-async-queue:1.3.*`)
 
 ## Installation
 
