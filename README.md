@@ -27,8 +27,21 @@ Development happens in my free time, but also during working hours. Thanks [fort
 
 ## Installation
 
-1. Install with Composer via `composer require ostark/craft-async-queue` from your project directory
-2. Install plugin with this command `php ./craft install/plugin async-queue` or in the Craft Control Panel under Settings > Plugins
+```shell
+cd your/craft-project
+composer require ostark/craft-async-queue
+php craft install/plugin async-queue
+```
+
+If you run into Composer version conflicts:
+```
+composer config platform --unset
+composer update
+php craft migrate/all
+composer require ostark/craft-async-queue
+php craft install/plugin async-queue
+```
+
 
 ## Configuration (optional)
 
