@@ -48,41 +48,10 @@ class Plugin extends BasePlugin
         // Tell yii about the concrete implementation of CacheInterface
         Craft::$container->set(CacheInterface::class, Craft::$app->getCache());
 
-        // EventHandlers
-        // =========================================================================
+        // Register event handlers
+        PushEvent::on(Queue::class, Queue::EVENT_AFTER_PUSH, [$this, 'runQueueInBackground']);
+        Event::on(Command::class, Command::EVENT_AFTER_ACTION, [$this, 'freeProcessPool']);
 
-        PushEvent::on(
-            Queue::class,
-            Queue::EVENT_AFTER_PUSH,
-            function (PushEvent $event) {
-                // Disable frontend queue runner
-                Craft::$app->getConfig()->getGeneral()->runQueueAutomatically = false;
-
-                $context = ($event->job instanceof JobInterface)
-                            ? $event->job->getDescription()
-                            : 'Not instanceof craft\queue\JobInterface';
-
-                // Run queue in the background
-                if ($this->getPool()->canIUse($context)) {
-                    $this->getHandler()->startBackgroundProcess();
-                    $this->getPool()->increment($context);
-                    $handled = true;
-                }
-
-                // Log what's going on
-                $this->logPushEvent($event, $handled ?? false);
-            }
-        );
-
-        Event::on(
-            Command::class,
-            Command::EVENT_AFTER_ACTION,
-            function (ActionEvent $event) {
-                if ('run' === $event->action->id) {
-                    $this->getPool()->decrement(Command::class . '::run() ' . Command::EVENT_AFTER_ACTION);
-                }
-            }
-        );
     }
 
 
@@ -94,7 +63,6 @@ class Plugin extends BasePlugin
      */
     public function getHandler(): QueueHandler
     {
-
         return $this->get('async_handler');
     }
 
@@ -106,6 +74,41 @@ class Plugin extends BasePlugin
         return $this->get('async_pool');
     }
 
+    // EventHandlers
+    // =========================================================================
+
+    /**
+     * @param \yii\queue\PushEvent $event
+     */
+    protected function runQueueInBackground(PushEvent $event)
+    {
+        // Disable frontend queue runner
+        Craft::$app->getConfig()->getGeneral()->runQueueAutomatically = false;
+
+        $context = ($event->job instanceof JobInterface)
+            ? $event->job->getDescription()
+            : 'Not instanceof craft\queue\JobInterface';
+
+        // Run queue in the background
+        if ($this->getPool()->canIUse($context)) {
+            $this->getHandler()->startBackgroundProcess();
+            $this->getPool()->increment($context);
+            $handled = true;
+        }
+
+        // Log what's going on
+        $this->logPushEvent($event, $handled ?? false);
+    }
+
+    /**
+     * @param \yii\base\ActionEvent $event
+     */
+    protected function freeProcessPool(ActionEvent $event)
+    {
+        if ('run' === $event->action->id) {
+            $this->getPool()->decrement(Command::class . '::run() ' . Command::EVENT_AFTER_ACTION);
+        }
+    }
 
     /**
      * @param \yii\queue\PushEvent $event
@@ -129,5 +132,4 @@ class Plugin extends BasePlugin
             );
         }
     }
-
 }
