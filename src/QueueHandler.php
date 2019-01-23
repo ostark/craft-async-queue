@@ -48,10 +48,10 @@ class QueueHandler
     /**
      * Construct queue command
      *
-     * @return string
+     * @return array
      * @throws \Exception
      */
-    protected function getCommand()
+    public function getCommand()
     {
         $finder = new PhpExecutableFinder();
         $php    = $finder->find(false);
@@ -62,7 +62,7 @@ class QueueHandler
 
         $php = $this->preparePath($php);
 
-        return $this->getBackgroundCommand(implode(' ', [$php, 'craft', 'queue/run', '-v']));
+        return $this->prepareCommandForBackgroundExec([$php, 'craft', 'queue/run', '-v']);
     }
 
 
@@ -86,18 +86,22 @@ class QueueHandler
     /**
      * Extend command with background syntax
      *
-     * @param string $cmd
+     * @param array $parts
      *
-     * @return string
+     * @return array
      */
-    protected function getBackgroundCommand(string $cmd): string
+    protected function prepareCommandForBackgroundExec(array $parts): array
     {
         if (defined('PHP_WINDOWS_VERSION_BUILD')) {
-            return 'start /B ' . $cmd . ' > NUL';
+            array_unshift($parts, "start /B");
+            array_push($parts, "> NUL");
+            return $parts;
         }
 
-        return 'nice ' . $cmd . ' > /dev/null 2>&1 &';
+        array_unshift($parts, "nice");
+        array_push($parts, " > /dev/null 2>&1 &");
 
+        return $parts;
     }
 
 }

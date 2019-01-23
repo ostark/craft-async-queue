@@ -18,6 +18,20 @@ class QueueHandlerTest extends TestCase
 
     }
 
+    public function testGetCommand()
+    {
+        $parts = $this->handler->getCommand();
+
+        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
+            $this->assertContains('start /B', $parts, "Command does not contain 'start /B'");
+        } else {
+            $this->assertContains('nice', $parts, "Command does not contain 'nice'");
+        }
+
+        $this->assertContains('craft', $parts, "Command does not contain 'craft'");
+
+    }
+
     /**
      * @coversNothing
      */
