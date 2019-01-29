@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0] - UNRELEASED
+### Changed
+- Decoupled `QueueCommand` form `QueueHandler`
+- Allow custom modifications via `QueueCommand::EVENT_PREPARE_COMMAND` event
+- Requires `symfony/process: ^4.2.0
+
+### Added
+- Unit tests
+- Support for `DISABLE_ASYNC_QUEUE` env var to disable the plugin in certain environments
+
+
 ## [1.4.0] - 2018-12-17
 
 ### Changed
