@@ -12,7 +12,7 @@ class ProcessPoolTest extends TestCase
     /**
      * @covers \ostark\AsyncQueue\ProcessPool::canIUse
      */
-    public function testCanIUseSuccess()
+    public function test_canIUse_success()
     {
         $pool           = $this->makeProcessPool();
         $pool->maxItems = 2;
@@ -24,7 +24,7 @@ class ProcessPoolTest extends TestCase
     /**
      * @covers \ostark\AsyncQueue\ProcessPool::canIUse
      */
-    public function testCanIUseFail()
+    public function test_canIUse_fail()
     {
         $pool           = $this->makeProcessPool();
         $pool->maxItems = 2;
@@ -39,7 +39,7 @@ class ProcessPoolTest extends TestCase
     /**
      * @covers \ostark\AsyncQueue\ProcessPool::increment
      */
-    public function testIncrementOne()
+    public function test_increment_increment_one()
     {
         $pool = $this->makeProcessPool();
         $pool->increment('test');
@@ -50,7 +50,7 @@ class ProcessPoolTest extends TestCase
     /**
      * @covers \ostark\AsyncQueue\ProcessPool::decrement
      */
-    public function testIncrementThreeDecrementOne()
+    public function test_increment_increment_three_decrement_one()
     {
         $pool = $this->makeProcessPool();
         $pool->increment('test'); // 1

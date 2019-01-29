@@ -16,6 +16,11 @@ use craft\queue\BaseJob;
 use craft\queue\Command;
 use craft\queue\JobInterface;
 use craft\queue\Queue;
+use ostark\AsyncQueue\Exceptions\LogicException;
+use ostark\AsyncQueue\Exceptions\PhpExecutableNotFound;
+use ostark\AsyncQueue\Exceptions\RuntimeException;
+use Symfony\Component\Process\Exception\ExceptionInterface;
+use Symfony\Component\Process\Exception\ProcessSignaledException;
 use yii\base\ActionEvent;
 use yii\base\Event;
 use yii\caching\CacheInterface;
@@ -91,9 +96,27 @@ class Plugin extends BasePlugin
 
         // Run queue in the background
         if ($this->getPool()->canIUse($context)) {
-            $this->getHandler()->startBackgroundProcess();
-            $this->getPool()->increment($context);
-            $handled = true;
+            try {
+                $this->getHandler()->startBackgroundProcess();
+                $this->getPool()->increment($context);
+                $handled = true;
+            } catch (PhpExecutableNotFound $e) {
+                Craft::debug(
+                    'QueueHandler::startBackgroundProcess() (PhpExecutableNotFound)',
+                    'async-queue'
+                );
+            } catch (RuntimeException | LogicException $e) {
+                Craft::debug(
+                    Craft::t(
+                        'async-queue',
+                        'QueueHandler::startBackgroundProcess() (Job status: {status}. Exit code: {code})', [
+                            'status' => $e->getProcess()->getStatus(),
+                            'code'   => $e->getProcess()->getExitCodeText()
+                        ]
+                    ),
+                    'async-queue'
+                );
+            }
         }
 
         // Log what's going on
