@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 ### Changed
 - Decoupled `QueueCommand` form `QueueHandler`
 - Allow custom modifications via `QueueCommand::EVENT_PREPARE_COMMAND` event
-- Requires `symfony/process: ^4.2.0
+- Requires `symfony/process: ^4.2.0`
 
 ### Added
 - Unit tests

@@ -17,7 +17,7 @@ use yii\base\Component;
 class QueueCommand extends Component
 {
     const DEFAULT_SCRIPT = "craft";
-    const DEFAULT_ARGS = "queue/run -v";
+    const DEFAULT_ARGS = "queue/run";
     const EVENT_PREPARE_COMMAND = 'prepareCommand';
 
     protected $scriptName;
