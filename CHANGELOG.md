@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 - Unit tests
+- Utility to perform tests in the Craft CP
 - Support for `DISABLE_ASYNC_QUEUE` env var to disable the plugin in certain environments
 
 

@@ -1,0 +1,27 @@
+
+<h2>{{ "Info"|t('async-queue') }}</h2>
+
+<table class="data fullwidth fixed-layout" dir="ltr">
+    <tbody>
+    {% for label, value in checks %}
+        <tr>
+            <th class="light">{{ label }}</th>
+            <td><code>{{ value }}</code></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<h2>{{ "Queue Test"|t('async-queue') }}</h2>
+
+<form class="utility" method="post" accept-charset="UTF-8">
+    {{ redirectInput('utilities/async-queue-test') }}
+    {{ csrfInput() }}
+    <input type="hidden" name="action" value="async-queue/test/run">
+    <input type="hidden" name="utility" value="1">
+    <input type="submit" class="btn submit" value="{{ "Run test"|t('async-queue') }}"/>
+    <a class="btn" onclick="window.location.reload();">{{ "Refresh"|t('async-queue') }}</a>
+
+</form>
+
+

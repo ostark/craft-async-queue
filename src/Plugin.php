@@ -12,6 +12,7 @@ namespace ostark\AsyncQueue;
 
 use Craft;
 use craft\base\Plugin as BasePlugin;
+use craft\events\RegisterTemplateRootsEvent;
 use craft\queue\BaseJob;
 use craft\queue\Command;
 use craft\queue\JobInterface;
@@ -19,6 +20,7 @@ use craft\queue\Queue;
 use ostark\AsyncQueue\Exceptions\LogicException;
 use ostark\AsyncQueue\Exceptions\PhpExecutableNotFound;
 use ostark\AsyncQueue\Exceptions\RuntimeException;
+use ostark\AsyncQueue\TestUtility\Utility;
 use yii\base\ActionEvent;
 use yii\base\Event;
 use yii\caching\CacheInterface;
@@ -45,7 +47,7 @@ class Plugin extends BasePlugin
         parent::init();
 
         // Don't do anything if not enabled
-        if ($this->getSettings()->enabled) {
+        if (!$this->getSettings()->enabled) {
             return;
         }
 
@@ -61,6 +63,7 @@ class Plugin extends BasePlugin
         // Register event handlers
         PushEvent::on(Queue::class, Queue::EVENT_AFTER_PUSH, [$this, 'runQueueInBackground']);
         Event::on(Command::class, Command::EVENT_AFTER_ACTION, [$this, 'freeProcessPool']);
+        Utility::setup($this);
 
     }
 
@@ -90,7 +93,7 @@ class Plugin extends BasePlugin
     /**
      * @param \yii\queue\PushEvent $event
      */
-    protected function runQueueInBackground(PushEvent $event)
+    public function runQueueInBackground(PushEvent $event)
     {
         // Disable frontend queue runner
         Craft::$app->getConfig()->getGeneral()->runQueueAutomatically = false;
@@ -131,7 +134,7 @@ class Plugin extends BasePlugin
     /**
      * @param \yii\base\ActionEvent $event
      */
-    protected function freeProcessPool(ActionEvent $event)
+    public function freeProcessPool(ActionEvent $event)
     {
         if ('run' === $event->action->id) {
             $this->getPool()->decrement(Command::class . '::run() ' . Command::EVENT_AFTER_ACTION);
