@@ -8,7 +8,7 @@ require __DIR__ . '/bootstrap.php';
 $content = json_encode(['$argv' => $argv, 'timestamp' => time(), 'date' => date('c')]);
 
 echo 'Start' . PHP_EOL;
-file_put_contents(TEST_FILE, $content . PHP_EOL, FILE_APPEND);
+file_put_contents(TEST_FILE, $content);
 sleep(1);
 echo 'Stop' . PHP_EOL;
 

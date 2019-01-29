@@ -14,11 +14,11 @@ class ProcessPoolTest extends TestCase
      */
     public function test_canIUse_success()
     {
-        $pool           = $this->makeProcessPool();
-        $pool->maxItems = 2;
-        $bool           = $pool->canIUse();
+        $pool = $this->makeProcessPool();
 
-        $this->assertTrue($bool);
+        $pool->maxItems = 2;
+
+        $this->assertTrue($pool->canIUse());
     }
 
     /**
@@ -26,7 +26,8 @@ class ProcessPoolTest extends TestCase
      */
     public function test_canIUse_fail()
     {
-        $pool           = $this->makeProcessPool();
+        $pool = $this->makeProcessPool();
+
         $pool->maxItems = 2;
         $pool->increment('test');
         $pool->increment('test');
@@ -42,8 +43,10 @@ class ProcessPoolTest extends TestCase
     public function test_increment_increment_one()
     {
         $pool = $this->makeProcessPool();
+
         $pool->increment('test');
         $usage = $pool->cache->get(ProcessPool::CACHE_KEY);
+
         $this->assertEquals(1, $usage);
     }
 
@@ -53,6 +56,7 @@ class ProcessPoolTest extends TestCase
     public function test_increment_increment_three_decrement_one()
     {
         $pool = $this->makeProcessPool();
+
         $pool->increment('test'); // 1
         $pool->increment('test'); // 2
         $pool->increment('test'); // 3
