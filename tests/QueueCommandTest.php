@@ -48,6 +48,7 @@ class QueueCommandTest extends TestCase
      */
     public function test_getPreparedCommand_alternative_decoration()
     {
+        // Add handler
         \yii\base\Event::on(
             \ostark\AsyncQueue\QueueCommand::class,
             \ostark\AsyncQueue\QueueCommand::EVENT_PREPARE_COMMAND,
@@ -62,6 +63,12 @@ class QueueCommandTest extends TestCase
 
         $this->assertStringStartsWith('BEFORE', $prepared);
         $this->assertStringEndsWith('AFTER', $prepared);
+
+        // Remove handler
+        \yii\base\Event::off(
+            \ostark\AsyncQueue\QueueCommand::class,
+            \ostark\AsyncQueue\QueueCommand::EVENT_PREPARE_COMMAND
+        );
     }
 
 

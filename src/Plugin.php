@@ -19,8 +19,6 @@ use craft\queue\Queue;
 use ostark\AsyncQueue\Exceptions\LogicException;
 use ostark\AsyncQueue\Exceptions\PhpExecutableNotFound;
 use ostark\AsyncQueue\Exceptions\RuntimeException;
-use Symfony\Component\Process\Exception\ExceptionInterface;
-use Symfony\Component\Process\Exception\ProcessSignaledException;
 use yii\base\ActionEvent;
 use yii\base\Event;
 use yii\caching\CacheInterface;
@@ -34,6 +32,8 @@ use yii\queue\PushEvent;
  * @package   AsyncQueue
  * @since     1.0.0
  *
+ * @method \ostark\AsyncQueue\Settings getSettings()
+ *
  */
 class Plugin extends BasePlugin
 {
@@ -43,6 +43,11 @@ class Plugin extends BasePlugin
     public function init()
     {
         parent::init();
+
+        // Don't do anything if not enabled
+        if ($this->getSettings()->enabled) {
+            return;
+        }
 
         // Register plugin components
         $this->setComponents([

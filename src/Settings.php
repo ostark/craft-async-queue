@@ -25,6 +25,11 @@ class Settings extends Model
      */
     public $poolLifetime;
 
+    /**
+     * @var bool
+     */
+    public $enabled = true;
+
 
     /**
      * Settings constructor.
@@ -36,6 +41,7 @@ class Settings extends Model
         $config = array_merge([
             'concurrency'  => (int)$this->env('ASYNC_QUEUE_CONCURRENCY', 2),
             'poolLifetime' => (int)$this->env('ASYNC_QUEUE_POOL_LIFETIME', 3600),
+            'enabled'      => ($this->env('DISABLE_ASYNC_QUEUE', '0') == '1') ? false : true
         ], $config);
 
         parent::__construct($config);

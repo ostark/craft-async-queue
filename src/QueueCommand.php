@@ -28,9 +28,12 @@ class QueueCommand extends Component
      *
      * @param string|null $scriptName
      * @param string|null $scriptArgs
+     * @param array $config
      */
-    public function __construct(string $scriptName = null, string $scriptArgs = null)
+    public function __construct(string $scriptName = null, string $scriptArgs = null, array $config = [])
     {
+        parent::__construct($config);
+
         $this->scriptName = $scriptName ?: self::DEFAULT_SCRIPT;
         $this->scriptArgs = $scriptArgs ?: self::DEFAULT_ARGS;
     }
