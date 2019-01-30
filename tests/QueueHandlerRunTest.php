@@ -1,10 +1,10 @@
 <?php
 
-use ostark\AsyncQueue\QueueHandler;
+use ostark\AsyncQueue\BackgroundProcess;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \ostark\AsyncQueue\QueueHandler
+ * @covers \ostark\AsyncQueue\BackgroundProcess
  */
 class QueueHandlerRunTest extends TestCase
 {
@@ -22,13 +22,13 @@ class QueueHandlerRunTest extends TestCase
     }
 
     /**
-     * @covers \ostark\AsyncQueue\QueueHandler::startBackgroundProcess
+     * @covers \ostark\AsyncQueue\BackgroundProcess::start
      */
     public function test_startBackgroundProcess_default_dummy_script_success()
     {
         $command = new \ostark\AsyncQueue\QueueCommand('craft.php', 'queue/run');
-        $handler = new QueueHandler($command);
-        $process = $handler->startBackgroundProcess();
+        $handler = new BackgroundProcess($command);
+        $process = $handler->start();
 
         $this->assertEquals(0, $process->getExitCode());
         $this->assertTrue($process->isSuccessful());

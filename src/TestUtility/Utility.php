@@ -64,6 +64,10 @@ class Utility extends \craft\base\Utility
 
     public static function setup(Plugin $plugin)
     {
+        if (!\Craft::$app->getRequest()->getIsCpRequest()) {
+            return;
+        }
+
         // Register the Utility
         Event::on(
             Utilities::class,

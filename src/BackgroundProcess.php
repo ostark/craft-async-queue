@@ -1,9 +1,7 @@
 <?php namespace ostark\AsyncQueue;
 
 use ostark\AsyncQueue\Exceptions\LogicException;
-use ostark\AsyncQueue\Exceptions\PhpExecutableNotFound;
 use ostark\AsyncQueue\Exceptions\RuntimeException;
-use Symfony\Component\Process\PhpExecutableFinder;
 use Symfony\Component\Process\Process;
 
 
@@ -12,10 +10,10 @@ use Symfony\Component\Process\Process;
  *
  * @author    Oliver Stark
  * @package   AsyncQueue
- * @since     1.3.0
+ * @since     2.0.0
  *
  */
-class QueueHandler
+class BackgroundProcess
 {
 
     /**
@@ -43,7 +41,7 @@ class QueueHandler
      * @throws \ostark\AsyncQueue\Exceptions\RuntimeException
      * @throws \ostark\AsyncQueue\Exceptions\LogicException
      */
-    public function startBackgroundProcess()
+    public function start()
     {
         $cmd = $this->command->getPreparedCommand();
         $cwd = realpath(CRAFT_BASE_PATH);
@@ -64,8 +62,5 @@ class QueueHandler
 
         return $process;
     }
-
-
-
 
 }

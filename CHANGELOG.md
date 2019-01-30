@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [2.0.0] - UNRELEASED
+## [2.0.0] - 2019-01-30
 ### Changed
 - Decoupled `QueueCommand` form `QueueHandler`
 - Allow custom modifications via `QueueCommand::EVENT_PREPARE_COMMAND` event

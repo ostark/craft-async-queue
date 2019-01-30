@@ -1,7 +1,4 @@
-<?php
-
-
-namespace ostark\AsyncQueue\Events;
+<?php namespace ostark\AsyncQueue\Events;
 
 
 use yii\base\Event;
