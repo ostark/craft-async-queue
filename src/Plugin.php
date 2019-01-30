@@ -53,6 +53,9 @@ class Plugin extends BasePlugin
             return;
         }
 
+        // Disable the 'web queue handler', just in case
+        Craft::$app->getConfig()->getGeneral()->runQueueAutomatically = false;
+
         // Register plugin components
         $this->setComponents([
             'async_process' => BackgroundProcess::class,

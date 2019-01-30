@@ -33,9 +33,6 @@ class BackgroundQueueHandler
 
     public function __invoke(PushEvent $event)
     {
-        // Disable the 'web queue handler', just in case
-        Craft::$app->getConfig()->getGeneral()->runQueueAutomatically = false;
-
         $context = ($event->job instanceof JobInterface)
             ? $event->job->getDescription()
             : 'Not instanceof craft\queue\JobInterface';
