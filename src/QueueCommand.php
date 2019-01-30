@@ -1,6 +1,4 @@
-<?php
-
-namespace ostark\AsyncQueue;
+<?php namespace ostark\AsyncQueue;
 
 use ostark\AsyncQueue\Events\QueueCommandEvent;
 use ostark\AsyncQueue\Exceptions\PhpExecutableNotFound;

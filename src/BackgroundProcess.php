@@ -6,7 +6,7 @@ use Symfony\Component\Process\Process;
 
 
 /**
- * QueueHandler
+ * BackgroundProcess
  *
  * @author    Oliver Stark
  * @package   AsyncQueue
@@ -22,7 +22,7 @@ class BackgroundProcess
     protected $command;
 
     /**
-     * QueueHandler constructor.
+     * BackgroundProcess constructor.
      *
      * @param \ostark\AsyncQueue\QueueCommand|null $command
      */
@@ -62,5 +62,4 @@ class BackgroundProcess
 
         return $process;
     }
-
 }

@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \ostark\AsyncQueue\BackgroundProcess
  */
-class QueueHandlerRunTest extends TestCase
+class BackgroundProcessRunTest extends TestCase
 {
 
 
@@ -24,11 +24,11 @@ class QueueHandlerRunTest extends TestCase
     /**
      * @covers \ostark\AsyncQueue\BackgroundProcess::start
      */
-    public function test_startBackgroundProcess_default_dummy_script_success()
+    public function test_start_default_dummy_script_success()
     {
         $command = new \ostark\AsyncQueue\QueueCommand('craft.php', 'queue/run');
-        $handler = new BackgroundProcess($command);
-        $process = $handler->start();
+        $bgProcess = new BackgroundProcess($command);
+        $process = $bgProcess->start();
 
         $this->assertEquals(0, $process->getExitCode());
         $this->assertTrue($process->isSuccessful());
