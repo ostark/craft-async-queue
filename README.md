@@ -60,6 +60,36 @@ ASYNC_QUEUE_CONCURRENCY=1
 ASYNC_QUEUE_CONCURRENCY=5
 ```
 
+To disable the plugin in certain environments, like on Windows which is not supported yet, set the `DISABLE_ASYNC_QUEUE` ENV var.
+```
+DISABLE_ASYNC_QUEUE=1
+```
+
+## Tests
+
+Beside the test suite you can run from the command line with this shortcut: `composer tests`, you can perform a test in the Craft CP.
+Navigate to `Utilities` > `Async Queue Test` and hit the `Run test` button. 
+
+
+## Events
+
+The command that runs in the background is basically `php craft queue/run`, however we add some linux specific syntax that executes the command in a non-blocking way.
+By setting `useDefaultDecoration` to `false` you prevent this. You have also the ability to modify the command itself. 
+
+```
+// Add handler
+\yii\base\Event::on(
+     \ostark\AsyncQueue\QueueCommand::class,
+     \ostark\AsyncQueue\QueueCommand::EVENT_PREPARE_COMMAND,
+     function(\ostark\AsyncQueue\Events\QueueCommandEvent $event) {
+         $event->useDefaultDecoration = false;
+         $event->commandLine = "BEFORE {$event->commandLine} AFTER";
+     }
+);
+```
+
+
+
 
 ## Under the hood: Process list
 
