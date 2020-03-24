@@ -58,8 +58,9 @@ class Plugin extends BasePlugin
 
         // Register plugin components
         $this->setComponents([
-            'async_process' => BackgroundProcess::class,
-            'async_pool'    => ProcessPool::class,
+            'async_process'      => BackgroundProcess::class,
+            'async_pool'         => ProcessPool::class,
+            'async_rate_limiter' => RateLimiter::class
         ]);
 
         // Tell yii about the concrete implementation of CacheInterface
@@ -67,7 +68,7 @@ class Plugin extends BasePlugin
 
         // Register event handlers
         PushEvent::on(Queue::class, Queue::EVENT_AFTER_PUSH, new BackgroundQueueHandler($this));
-        Event::on(Command::class, Command::EVENT_AFTER_ACTION, new ProcessPoolCleanupHandler($this));
+        //Event::on(Command::class, Command::EVENT_AFTER_ACTION, new ProcessPoolCleanupHandler($this));
 
         // Register CP Utility
         Utility::setup($this);
@@ -92,6 +93,14 @@ class Plugin extends BasePlugin
     public function getPool(): ProcessPool
     {
         return $this->get('async_pool');
+    }
+
+    /**
+     * @return \ostark\AsyncQueue\RateLimiter
+     */
+    public function getRateLimiter(): RateLimiter
+    {
+        return $this->get('async_rate_limiter');
     }
 
 

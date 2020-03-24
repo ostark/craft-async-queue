@@ -38,10 +38,10 @@ class BackgroundQueueHandler
             : 'Not instanceof craft\queue\JobInterface';
 
         // Run queue in the background
-        if ($this->plugin->getPool()->canIUse($context)) {
+        if ($this->plugin->getRateLimiter()->canIUse($context)) {
             try {
                 $this->plugin->getProcess()->start();
-                $this->plugin->getPool()->increment($context);
+                $this->plugin->getRateLimiter()->increment($context);
                 $handled = true;
             } catch (PhpExecutableNotFound $e) {
                 Craft::debug(
