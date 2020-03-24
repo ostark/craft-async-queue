@@ -43,6 +43,7 @@ class BackgroundQueueHandler
                 $this->plugin->getProcess()->start();
                 $this->plugin->getRateLimiter()->increment($context);
                 $handled = true;
+
             } catch (PhpExecutableNotFound $e) {
                 Craft::debug(
                     'QueueHandler::startBackgroundProcess() (PhpExecutableNotFound)',
@@ -59,7 +60,12 @@ class BackgroundQueueHandler
                     ),
                     'async-queue'
                 );
+            } finally {
+                // wait 0.1s
+                usleep(100000);
             }
+
+
         }
 
         // Log what's going on
