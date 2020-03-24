@@ -19,6 +19,11 @@ class RateLimiter
      */
     protected $queue;
 
+    /**
+     * @var integer
+     */
+    protected $internalCount = 0;
+
     public function __construct(Queue $queue, Settings $settings)
     {
         $this->queue    = $queue;
@@ -31,15 +36,17 @@ class RateLimiter
      */
     public function canIUse(string $context = null): bool
     {
-        $reserved = $this->queue->getTotalReserved();
-        $this->logAttempt($reserved, $context);
+        $reserved     = $this->queue->getTotalReserved();
+        $currentUsage = $this->internalCount + $reserved;
+
+        $this->logAttempt($currentUsage, $context);
 
         return ($reserved < $this->maxItems) ? true : false;
     }
 
     public function increment(string $context = null)
     {
-        // dummy
+        $this->internalCount++;
     }
 
     public function decrement(string $context = null)

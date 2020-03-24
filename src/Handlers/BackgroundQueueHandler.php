@@ -60,11 +60,7 @@ class BackgroundQueueHandler
                     ),
                     'async-queue'
                 );
-            } finally {
-                // wait 0.1s
-                usleep(100000);
             }
-
 
         }
 
