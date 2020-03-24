@@ -41,7 +41,7 @@ class RateLimiter
 
         $this->logAttempt($currentUsage, $context);
 
-        return ($reserved < $this->maxItems) ? true : false;
+        return ($currentUsage < $this->maxItems) ? true : false;
     }
 
     public function increment(string $context = null)
