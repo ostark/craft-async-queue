@@ -44,14 +44,9 @@ class RateLimiter
         return ($currentUsage < $this->maxItems) ? true : false;
     }
 
-    public function increment(string $context = null)
+    public function increment()
     {
         $this->internalCount++;
-    }
-
-    public function decrement(string $context = null)
-    {
-        // dummy
     }
 
 

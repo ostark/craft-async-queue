@@ -9,11 +9,6 @@ use ostark\AsyncQueue\Exceptions\RuntimeException;
 use ostark\AsyncQueue\Plugin;
 use yii\queue\PushEvent;
 
-/**
- * Class BackgroundQueueHandler
- *
- * @package ostark\AsyncQueue\Handlers
- */
 class BackgroundQueueHandler
 {
     /**
@@ -41,7 +36,7 @@ class BackgroundQueueHandler
         if ($this->plugin->getRateLimiter()->canIUse($context)) {
             try {
                 $this->plugin->getProcess()->start();
-                $this->plugin->getRateLimiter()->increment($context);
+                $this->plugin->getRateLimiter()->increment();
                 $handled = true;
 
             } catch (PhpExecutableNotFound $e) {

@@ -2,14 +2,6 @@
 
 use craft\base\Model;
 
-/**
- * Settings
- *
- * @author    Oliver Stark
- * @package   AsyncQueue
- * @since     1.3.0
- *
- */
 class Settings extends Model
 {
     // Public Properties

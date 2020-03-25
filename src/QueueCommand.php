@@ -5,13 +5,6 @@ use ostark\AsyncQueue\Exceptions\PhpExecutableNotFound;
 use Symfony\Component\Process\PhpExecutableFinder;
 use yii\base\Component;
 
-/**
- * Class QueueCommand
- *
- * @author    Oliver Stark
- * @package   AsyncQueue
- * @since     2.0.0
- */
 class QueueCommand extends Component
 {
     const DEFAULT_SCRIPT = "craft";
