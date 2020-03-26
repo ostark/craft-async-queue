@@ -3,11 +3,6 @@
 use craft\queue\BaseJob;
 use craft\queue\QueueInterface;
 
-/**
- * Class TestJob
- *
- * @package ostark\AsyncQueue\TestUtility
- */
 class TestJob extends BaseJob
 {
 

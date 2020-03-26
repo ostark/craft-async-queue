@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.1.0] - 2020-03-26
+### Changed
+- Replaced  `ProcessPool` with `Ratelimiter` to limit the number of concurrent queue runners
+- Clean up: Removed unnecessary doc blocks in favour of type hints
+
 ## [2.0.0] - 2019-01-30
 ### Changed
 - Decoupled `QueueCommand` form `QueueHandler`

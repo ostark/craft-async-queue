@@ -4,15 +4,6 @@ use ostark\AsyncQueue\Exceptions\LogicException;
 use ostark\AsyncQueue\Exceptions\RuntimeException;
 use Symfony\Component\Process\Process;
 
-
-/**
- * BackgroundProcess
- *
- * @author    Oliver Stark
- * @package   AsyncQueue
- * @since     2.0.0
- *
- */
 class BackgroundProcess
 {
 

@@ -5,7 +5,6 @@ use craft\events\RegisterTemplateRootsEvent;
 use craft\services\Utilities;
 use craft\web\View;
 use ostark\AsyncQueue\Plugin;
-use ostark\AsyncQueue\ProcessPool;
 use ostark\AsyncQueue\QueueCommand;
 use yii\base\Event;
 
@@ -43,18 +42,16 @@ class Utility extends \craft\base\Utility
      */
     public static function contentHtml(): string
     {
+        /** @var \craft\queue\Queue $queue */
+        $queue  = \Craft::$app->getQueue();
         $plugin = Plugin::getInstance();
-        $pool   = new ProcessPool(
-            $plugin->getSettings(),
-            \Craft::$app->getCache()
-        );
 
         $checks = [
-            'Pool concurrency'  => $plugin->getSettings()->concurrency,
-            'Pool actual usage' => $pool->cache->get(ProcessPool::CACHE_KEY) ?: '0',
-            'Jobs waiting'      => \Craft::$app->getQueue()->getTotalWaiting(),
-            'Jobs failed'       => \Craft::$app->getQueue()->getTotalFailed(),
-            'Command line'      => (new QueueCommand())->getPreparedCommand()
+            'Queue runner concurrency' => $plugin->getSettings()->concurrency,
+            'Reserved jobs'            => $queue->getTotalReserved(),
+            'Jobs waiting'             => $queue->getTotalWaiting(),
+            'Jobs failed'              => $queue->getTotalFailed(),
+            'Command line'             => (new QueueCommand())->getPreparedCommand()
         ];
 
 

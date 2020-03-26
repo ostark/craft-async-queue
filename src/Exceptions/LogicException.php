@@ -2,11 +2,6 @@
 
 use Symfony\Component\Process\Process;
 
-/**
- * Class LogicException
- *
- * @package ostark\AsyncQueue\Exceptions
- */
 class LogicException extends \LogicException implements ProcessException
 {
     protected $process;

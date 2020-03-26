@@ -9,11 +9,6 @@ use ostark\AsyncQueue\Exceptions\RuntimeException;
 use ostark\AsyncQueue\Plugin;
 use yii\queue\PushEvent;
 
-/**
- * Class BackgroundQueueHandler
- *
- * @package ostark\AsyncQueue\Handlers
- */
 class BackgroundQueueHandler
 {
     /**
@@ -38,11 +33,12 @@ class BackgroundQueueHandler
             : 'Not instanceof craft\queue\JobInterface';
 
         // Run queue in the background
-        if ($this->plugin->getPool()->canIUse($context)) {
+        if ($this->plugin->getRateLimiter()->canIUse($context)) {
             try {
                 $this->plugin->getProcess()->start();
-                $this->plugin->getPool()->increment($context);
+                $this->plugin->getRateLimiter()->increment();
                 $handled = true;
+
             } catch (PhpExecutableNotFound $e) {
                 Craft::debug(
                     'QueueHandler::startBackgroundProcess() (PhpExecutableNotFound)',
@@ -60,6 +56,7 @@ class BackgroundQueueHandler
                     'async-queue'
                 );
             }
+
         }
 
         // Log what's going on
