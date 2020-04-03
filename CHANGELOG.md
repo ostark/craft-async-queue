@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.1.1] - 2020-04-03
+### Fix
+- Catch Exception when trying to count reserved jobs
+
 ## [2.1.0] - 2020-03-26
 ### Changed
 - Replaced  `ProcessPool` with `Ratelimiter` to limit the number of concurrent queue runners

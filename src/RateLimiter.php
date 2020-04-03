@@ -36,7 +36,12 @@ class RateLimiter
      */
     public function canIUse(string $context = null): bool
     {
-        $reserved     = $this->queue->getTotalReserved();
+        try {
+            $reserved = $this->queue->getTotalReserved();
+        } catch (\Exception $exception) {
+            $reserved = 0;
+        }
+
         $currentUsage = $this->internalCount + $reserved;
 
         $this->logAttempt($currentUsage, $context);
