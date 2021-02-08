@@ -59,7 +59,7 @@ class Utility extends \craft\base\Utility
     }
 
 
-    public static function setup(Plugin $plugin)
+    public static function setup(Plugin $plugin): void
     {
         if (!\Craft::$app->getRequest()->getIsCpRequest()) {
             return;

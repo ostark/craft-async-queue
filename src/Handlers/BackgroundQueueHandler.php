@@ -64,11 +64,7 @@ class BackgroundQueueHandler
     }
 
 
-    /**
-     * @param \yii\queue\PushEvent $event
-     * @param bool                 $handled
-     */
-    protected function logPushEvent(PushEvent $event, $handled = false)
+    protected function logPushEvent(PushEvent $event, bool $handled = false): void
     {
         if (!YII_DEBUG) {
             return;

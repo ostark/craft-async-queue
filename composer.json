@@ -2,7 +2,6 @@
   "name": "ostark/craft-async-queue",
   "description": "A queue handler that moves queue execution to a non-blocking background process",
   "type": "craft-plugin",
-  "version": "2.1.1",
   "keywords": [
     "craft",
     "cms",
@@ -22,6 +21,7 @@
     }
   ],
   "require": {
+    "php": ">=7.1",
     "craftcms/cms": "^3.0.0",
     "symfony/process": "^4.2|^5.0"
   },
@@ -38,12 +38,11 @@
     "changelogUrl": "https://raw.githubusercontent.com/ostark/craft-async-queue/master/CHANGELOG.md"
   },
   "require-dev": {
-    "phpstan/phpstan": "^0.11.1",
-    "phpunit/phpunit": "^6.0"
+    "phpunit/phpunit": "^7.0",
+    "vimeo/psalm": "^4.4"
   },
   "scripts": {
-    "ps": "vendor/bin/phpstan analyse src --level=3 -c phpstan.neon",
-    "stan": "@ps",
+    "ps": "vendor/bin/phpstan.phar analyse src --level=3 -c phpstan.neon",
     "tests": "vendor/bin/phpunit -v"
   }
 }

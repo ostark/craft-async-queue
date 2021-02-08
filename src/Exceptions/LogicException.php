@@ -6,7 +6,7 @@ class LogicException extends \LogicException implements ProcessException
 {
     protected $process;
 
-    public function setProcess(Process $process)
+    public function setProcess(Process $process): void
     {
         $this->process = $process;
     }

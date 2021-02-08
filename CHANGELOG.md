@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.2.0] - 2021-02-05
+### Changed
+- Added support for `symfony/process:^5.0` 
+- Updated `phpunit/phpunit` 
+- Removed `version` from composer.json 
+- Switched to `psalm` for static analysis
+
 ## [2.1.1] - 2020-04-03
 ### Fix
 - Catch Exception when trying to count reserved jobs

@@ -49,13 +49,13 @@ class RateLimiter
         return ($currentUsage < $this->maxItems) ? true : false;
     }
 
-    public function increment()
+    public function increment(): void
     {
         $this->internalCount++;
     }
 
 
-    protected function logAttempt(int $currentUsage, string $context = null)
+    protected function logAttempt(int $currentUsage, string $context = null): void
     {
 
         \Craft::debug(

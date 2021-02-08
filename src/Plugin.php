@@ -30,7 +30,7 @@ class Plugin extends BasePlugin
     /**
      * Init plugin
      */
-    public function init()
+    public function init(): void
     {
         parent::init();
 
