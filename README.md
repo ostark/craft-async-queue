@@ -3,7 +3,7 @@
 [![Latest Stable Version](https://poser.pugx.org/ostark/craft-async-queue/v/stable)](https://packagist.org/packages/ostark/craft-async-queue)
 [![Total Downloads](https://poser.pugx.org/ostark/craft-async-queue/downloads)](https://packagist.org/packages/ostark/craft-async-queue)
 [![Monthly Downloads](https://poser.pugx.org/ostark/craft-async-queue/d/monthly)](https://packagist.org/packages/ostark/craft-async-queue)
-[![Buy us a tree](https://img.shields.io/badge/Treeware-%F0%9F%8C%B3-lightgreen)](https://plant.treeware.earth/https://github.com/ostark/craft-async-queue)
+[![Buy us a tree](https://img.shields.io/badge/Treeware-%F0%9F%8C%B3-lightgreen)](https://plant.treeware.earth/ostark/craft-async-queue)
 
 
 With Craft's job queue you can run heavy tasks in the background. Unfortunately, this is not entirely true, when `runQueueAutomatically => true` (default), the job queue is handled by a ajax (FPM) call.
@@ -20,7 +20,7 @@ Development happens in my free time, but also during working hours. Thanks [fort
 
 ## Licence 🌳           
 
-This package is [Treeware](https://treeware.earth). If you use it in production, then we ask that you [**buy the world a tree**](https://plant.treeware.earth/https://github.com/ostark/craft-async-queue) to thank me for my work. By contributing to the Treeware forest you’ll be creating employment for local families and restoring wildlife habitats. 
+This package is [Treeware](https://treeware.earth). If you use it in production, then we ask that you [**buy the world a tree**](https://plant.treeware.earth/ostark/craft-async-queue) to thank me for my work. By contributing to the Treeware forest you’ll be creating employment for local families and restoring wildlife habitats. 
 
 ## Requirements
 
