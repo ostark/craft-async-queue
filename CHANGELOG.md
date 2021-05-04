@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.3.0] - 2021-05-04
+### Changed
+- Added dependency `treeware/plant` 
+- Housekeeping `composer.json` 
+
+
 ## [2.2.0] - 2021-02-05
 ### Changed
 - Added support for `symfony/process:^5.0` 

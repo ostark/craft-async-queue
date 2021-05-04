@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 class QueueCommandTest extends TestCase
 {
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -22,12 +22,12 @@ class QueueCommandTest extends TestCase
      */
     public function test_getPreparedCommand_with_defaults()
     {
-        $command = new \ostark\AsyncQueue\QueueCommand();
+        $command  = new \ostark\AsyncQueue\QueueCommand();
         $prepared = $command->getPreparedCommand();
 
-        $this->assertContains('php', $prepared);
-        $this->assertContains(\ostark\AsyncQueue\QueueCommand::DEFAULT_SCRIPT, $prepared);
-        $this->assertContains(\ostark\AsyncQueue\QueueCommand::DEFAULT_ARGS, $prepared);
+        $this->assertStringContainsString('php', $prepared);
+        $this->assertStringContainsString(\ostark\AsyncQueue\QueueCommand::DEFAULT_SCRIPT, $prepared);
+        $this->assertStringContainsString(\ostark\AsyncQueue\QueueCommand::DEFAULT_ARGS, $prepared);
     }
 
     /**
@@ -52,13 +52,13 @@ class QueueCommandTest extends TestCase
         \yii\base\Event::on(
             \ostark\AsyncQueue\QueueCommand::class,
             \ostark\AsyncQueue\QueueCommand::EVENT_PREPARE_COMMAND,
-            function(\ostark\AsyncQueue\Events\QueueCommandEvent $event) {
+            function (\ostark\AsyncQueue\Events\QueueCommandEvent $event) {
                 $event->useDefaultDecoration = false;
-                $event->commandLine = "BEFORE {$event->commandLine} AFTER";
+                $event->commandLine          = "BEFORE {$event->commandLine} AFTER";
             }
         );
 
-        $command = new \ostark\AsyncQueue\QueueCommand();
+        $command  = new \ostark\AsyncQueue\QueueCommand();
         $prepared = $command->getPreparedCommand();
 
         $this->assertStringStartsWith('BEFORE', $prepared);
@@ -78,13 +78,13 @@ class QueueCommandTest extends TestCase
     public function test_getPreparedCommand_alternative_script_args()
     {
         $script = 'foo.php';
-        $args = '--bar';
+        $args   = '--bar';
 
-        $command = new \ostark\AsyncQueue\QueueCommand($script, $args);
+        $command  = new \ostark\AsyncQueue\QueueCommand($script, $args);
         $prepared = $command->getPreparedCommand();
 
-        $this->assertContains($script, $prepared);
-        $this->assertContains($args, $prepared);
+        $this->assertStringContainsString($script, $prepared);
+        $this->assertStringContainsString($args, $prepared);
     }
 
 }

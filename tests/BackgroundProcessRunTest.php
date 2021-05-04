@@ -10,12 +10,12 @@ class BackgroundProcessRunTest extends TestCase
 {
 
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         parent::tearDown();
         unlink(TEST_FILE);
@@ -26,9 +26,9 @@ class BackgroundProcessRunTest extends TestCase
      */
     public function test_start_default_dummy_script_success()
     {
-        $command = new \ostark\AsyncQueue\QueueCommand('craft.php', 'queue/run');
+        $command   = new \ostark\AsyncQueue\QueueCommand('craft.php', 'queue/run');
         $bgProcess = new BackgroundProcess($command);
-        $process = $bgProcess->start();
+        $process   = $bgProcess->start();
 
         $this->assertEquals(0, $process->getExitCode());
         $this->assertTrue($process->isSuccessful());
