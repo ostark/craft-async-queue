@@ -44,7 +44,7 @@
     "vimeo/psalm": "^4.4"
   },
   "scripts": {
-    "ps": "vendor/bin/phpstan.phar analyse src --level=3 -c phpstan.neon",
-    "tests": "vendor/bin/phpunit -v"
+    "psalm": "vendor/bin/psalm",
+    "tests": "vendor/bin/phpunit --testdox"
   }
 }

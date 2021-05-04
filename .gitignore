@@ -17,6 +17,7 @@ composer.lock
 .cache
 .DS_Store
 .idea
+.phpunit.result.cache
 .project
 .settings
 *.esproj
