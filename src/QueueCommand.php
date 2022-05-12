@@ -53,8 +53,6 @@ class QueueCommand extends Component
 
     /**
      * Wrapper
-     *
-     *
      */
     protected function decorate(string $commandLine): string
     {
@@ -68,7 +66,7 @@ class QueueCommand extends Component
         }
 
         // default decoration
-        return "nice {$commandLine} > /dev/null 2>&1 &";
+        return "nice -n 15 {$commandLine} > /dev/null 2>&1 &";
     }
 
 }
