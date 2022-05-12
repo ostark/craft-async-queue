@@ -18,15 +18,13 @@ class BackgroundQueueHandler
 
     /**
      * BackgroundQueue constructor.
-     *
-     * @param \ostark\AsyncQueue\Plugin $plugin
      */
     public function __construct(Plugin $plugin)
     {
         $this->plugin = $plugin;
     }
 
-    public function __invoke(PushEvent $event)
+    public function __invoke(PushEvent $event): void
     {
         $context = ($event->job instanceof JobInterface)
             ? $event->job->getDescription()
@@ -39,7 +37,7 @@ class BackgroundQueueHandler
                 $this->plugin->getRateLimiter()->increment();
                 $handled = true;
 
-            } catch (PhpExecutableNotFound $e) {
+            } catch (PhpExecutableNotFound) {
                 Craft::debug(
                     'QueueHandler::startBackgroundProcess() (PhpExecutableNotFound)',
                     'async-queue'
@@ -69,6 +67,7 @@ class BackgroundQueueHandler
         if (!YII_DEBUG) {
             return;
         }
+
         if ($event->job instanceof BaseJob) {
             Craft::debug(
                 Craft::t(

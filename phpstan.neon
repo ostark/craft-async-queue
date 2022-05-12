@@ -1,0 +1,13 @@
+includes:
+    - vendor/craftcms/phpstan/phpstan.neon
+parameters:
+    level: 6
+    bootstrapFiles:
+        - tests/bootstrap.php
+    paths:
+        - src
+        - tests
+    tmpDir: build/phpstan
+    checkMissingIterableValueType: false
+    ignoreErrors:
+        - "#Negated boolean expression is always false#"

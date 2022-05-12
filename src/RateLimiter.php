@@ -38,7 +38,7 @@ class RateLimiter
     {
         try {
             $reserved = $this->queue->getTotalReserved();
-        } catch (\Exception $exception) {
+        } catch (\Exception) {
             $reserved = 0;
         }
 

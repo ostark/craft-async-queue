@@ -41,14 +41,14 @@ class BackgroundProcess
 
         try {
             $process->run();
-        } catch (\Symfony\Component\Process\Exception\RuntimeException $e) {
-            $e = new RuntimeException($e->getMessage());
-            $e->setProcess($process);
-            throw $e;
-        } catch (\Symfony\Component\Process\Exception\LogicException $e) {
-            $e = new LogicException($e->getMessage());
-            $e->setProcess($process);
-            throw $e;
+        } catch (\Symfony\Component\Process\Exception\RuntimeException $runtimeException) {
+            $runtimeException = new RuntimeException($runtimeException->getMessage());
+            $runtimeException->setProcess($process);
+            throw $runtimeException;
+        } catch (\Symfony\Component\Process\Exception\LogicException $logicException) {
+            $logicException = new LogicException($logicException->getMessage());
+            $logicException->setProcess($process);
+            throw $logicException;
         }
 
         return $process;

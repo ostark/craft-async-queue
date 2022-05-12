@@ -13,8 +13,6 @@ class Utility extends \craft\base\Utility
 
     /**
      * Returns the utility’s unique identifier.
-     *
-     * @return string
      */
     public static function id(): string
     {
@@ -30,15 +28,13 @@ class Utility extends \craft\base\Utility
     }
 
 
-    public static function iconPath(): string
+    public static function iconPath(): ?string
     {
         return __DIR__ . '/icon.svg';
     }
 
     /**
      * Returns the utility's content HTML.
-     *
-     * @return string
      */
     public static function contentHtml(): string
     {
@@ -68,12 +64,12 @@ class Utility extends \craft\base\Utility
         // Register the Utility
         Event::on(
             Utilities::class,
-            Utilities::EVENT_REGISTER_UTILITY_TYPES, function (RegisterComponentTypesEvent $event) {
+            Utilities::EVENT_REGISTER_UTILITY_TYPES, function (RegisterComponentTypesEvent $event): void {
             $event->types[] = Utility::class;
         });
 
         // Tune the template path
-        Event::on(View::class, View::EVENT_REGISTER_CP_TEMPLATE_ROOTS, function (RegisterTemplateRootsEvent $e) use ($plugin) {
+        Event::on(View::class, View::EVENT_REGISTER_CP_TEMPLATE_ROOTS, function (RegisterTemplateRootsEvent $e) use ($plugin): void {
             $e->roots[$plugin->getHandle()] = __DIR__;
         });
 
