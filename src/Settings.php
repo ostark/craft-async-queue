@@ -25,8 +25,6 @@ class Settings extends Model
 
     /**
      * Settings constructor.
-     *
-     * @param array $config
      */
     public function __construct(array $config = [])
     {
@@ -42,12 +40,10 @@ class Settings extends Model
     /**
      * Env var access with default
      *
-     * @param string $name
      * @param mixed  $default
      *
-     * @return false|string
      */
-    protected function env($name, $default = null)
+    protected function env(string $name, $default = null): false|string
     {
         if (getenv($name) === false) {
             return (string)$default;

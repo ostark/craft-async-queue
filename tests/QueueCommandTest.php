@@ -20,7 +20,7 @@ class QueueCommandTest extends TestCase
     /**
      * @covers \ostark\AsyncQueue\QueueCommand::getPreparedCommand
      */
-    public function test_getPreparedCommand_with_defaults()
+    public function test_getPreparedCommand_with_defaults(): void
     {
         $command  = new \ostark\AsyncQueue\QueueCommand();
         $prepared = $command->getPreparedCommand();
@@ -33,7 +33,7 @@ class QueueCommandTest extends TestCase
     /**
      * @covers \ostark\AsyncQueue\QueueCommand::getPreparedCommand
      */
-    public function test_getPreparedCommand_wrong_PHP_BINARY()
+    public function test_getPreparedCommand_wrong_PHP_BINARY(): void
     {
         putenv("PHP_BINARY=php.txt");
 
@@ -46,7 +46,7 @@ class QueueCommandTest extends TestCase
     /**
      * @covers \ostark\AsyncQueue\QueueCommand::getPreparedCommand
      */
-    public function test_getPreparedCommand_alternative_decoration()
+    public function test_getPreparedCommand_alternative_decoration(): void
     {
         // Add handler
         \yii\base\Event::on(
@@ -75,7 +75,7 @@ class QueueCommandTest extends TestCase
     /**
      * @covers \ostark\AsyncQueue\QueueCommand::getPreparedCommand
      */
-    public function test_getPreparedCommand_alternative_script_args()
+    public function test_getPreparedCommand_alternative_script_args(): void
     {
         $script = 'foo.php';
         $args   = '--bar';

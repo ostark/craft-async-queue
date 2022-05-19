@@ -24,7 +24,7 @@ class BackgroundProcessRunTest extends TestCase
     /**
      * @covers \ostark\AsyncQueue\BackgroundProcess::start
      */
-    public function test_start_default_dummy_script_success()
+    public function test_start_default_dummy_script_success(): void
     {
         $command   = new \ostark\AsyncQueue\QueueCommand('craft.php', 'queue/run');
         $bgProcess = new BackgroundProcess($command);

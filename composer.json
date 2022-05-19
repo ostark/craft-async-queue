@@ -21,9 +21,9 @@
     }
   ],
   "require": {
-    "php": ">=7.1",
-    "craftcms/cms": "^3.0.0",
-    "symfony/process": "^4.2|^5.0",
+    "php": "^8.0",
+    "craftcms/cms": "^4.0.0",
+    "symfony/process": "^5.0",
     "treeware/plant": "^0.1.0"
   },
   "autoload": {
@@ -40,11 +40,21 @@
     "changelogUrl": "https://raw.githubusercontent.com/ostark/craft-async-queue/master/CHANGELOG.md"
   },
   "require-dev": {
-    "phpunit/phpunit": "^7.0|^8.0",
-    "vimeo/psalm": "^4.4"
+    "phpunit/phpunit": "^8.0|^9.0",
+    "craftcms/phpstan": "*",
+    "craftcms/rector": "dev-main"
   },
   "scripts": {
-    "psalm": "vendor/bin/psalm",
+    "phpstan": "vendor/bin/phpstan",
     "tests": "vendor/bin/phpunit --testdox"
-  }
+  },
+  "config": {
+    "allow-plugins": {
+      "yiisoft/yii2-composer": true,
+      "craftcms/plugin-installer": true,
+      "treeware/plant": true
+    }
+  },
+  "prefer-stable": true,
+  "minimum-stability": "dev"
 }

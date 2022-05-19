@@ -4,7 +4,7 @@ use Symfony\Component\Process\Process;
 
 class LogicException extends \LogicException implements ProcessException
 {
-    protected $process;
+    protected Process $process;
 
     public function setProcess(Process $process): void
     {

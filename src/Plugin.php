@@ -74,7 +74,7 @@ class Plugin extends BasePlugin
     /**
      * Creates and returns the model used to store the plugin’s settings.
      */
-    protected function createSettingsModel() : Settings
+    protected function createSettingsModel() : ?\craft\base\Model
     {
         return new Settings();
     }
