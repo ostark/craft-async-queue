@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0] - 2022-05-12
+- Craft 4 support
+- PHP 8 syntax
+
 ## [2.3.0] - 2021-05-04
 ### Changed
 - Added dependency `treeware/plant` 
