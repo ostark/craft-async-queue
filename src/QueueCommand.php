@@ -45,7 +45,9 @@ class QueueCommand extends Component
             throw new PhpExecutableNotFound('Unable to find php executable.');
         }
 
-        $commandLine = implode(" ", [$php, $this->scriptName, $this->scriptArgs]);
+        $path = realpath(CRAFT_BASE_PATH);
+        $script = $path . DIRECTORY_SEPARATOR . $this->scriptName;
+        $commandLine = implode(" ", [$php, $script, $this->scriptArgs]);
 
         return $this->decorate($commandLine);
     }
@@ -66,7 +68,7 @@ class QueueCommand extends Component
         }
 
         // default decoration
-        return "nice -n 15 {$commandLine} > /dev/null 2>&1 &";
+        return "nice -n 15 {$commandLine}"; //  > /tmp/null.txt 2>&1 &
     }
 
 }

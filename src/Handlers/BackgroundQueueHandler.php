@@ -54,7 +54,6 @@ class BackgroundQueueHandler
                     'async-queue'
                 );
             }
-
         }
 
         // Log what's going on
