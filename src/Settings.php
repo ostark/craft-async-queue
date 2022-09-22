@@ -4,23 +4,9 @@ use craft\base\Model;
 
 class Settings extends Model
 {
-    // Public Properties
-    // =========================================================================
+    public int $concurrency;
 
-    /**
-     * @var integer
-     */
-    public $concurrency;
-
-    /**
-     * @var integer
-     */
-    public $poolLifetime;
-
-    /**
-     * @var bool
-     */
-    public $enabled = true;
+    public bool $enabled = true;
 
 
     /**
@@ -29,8 +15,7 @@ class Settings extends Model
     public function __construct(array $config = [])
     {
         $config = array_merge([
-            'concurrency'  => (int)$this->env('ASYNC_QUEUE_CONCURRENCY', 2),
-            'poolLifetime' => (int)$this->env('ASYNC_QUEUE_POOL_LIFETIME', 3600),
+            'concurrency'  => (int) $this->env('ASYNC_QUEUE_CONCURRENCY', 1),
             'enabled'      => ($this->env('DISABLE_ASYNC_QUEUE', '0') == '1') ? false : true
         ], $config);
 

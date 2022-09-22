@@ -13,7 +13,7 @@ class TestJob extends BaseJob
      */
     public function execute($queue): void
     {
-        sleep(10);
+        sleep(3);
     }
 
 

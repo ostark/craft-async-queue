@@ -32,6 +32,9 @@ class BackgroundProcessRunTest extends TestCase
 
         $process->wait();
 
+        // give it some time to write the test file
+        usleep(150000);
+
         $this->assertEquals(0, $process->getExitCode());
         $this->assertTrue($process->isSuccessful());
         $this->assertEquals(\Symfony\Component\Process\Process::STATUS_TERMINATED, $process->getStatus());
@@ -53,6 +56,8 @@ class BackgroundProcessRunTest extends TestCase
         $command   = new \ostark\AsyncQueue\QueueCommand('craft.php', '--sleep');
         $bgProcess = new BackgroundProcess($command);
         $process   = $bgProcess->start();
+
+        // give it some time to write the test file
         usleep(150000);
 
         $this->assertFileExists(TEST_FILE);
@@ -61,5 +66,4 @@ class BackgroundProcessRunTest extends TestCase
         $this->assertGreaterThanOrEqual($content['timestamp'], time());
 
     }
-
 }

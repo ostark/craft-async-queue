@@ -26,24 +26,28 @@ class BackgroundQueueHandler
 
     public function __invoke(PushEvent $event): void
     {
+
         $context = ($event->job instanceof JobInterface)
             ? $event->job->getDescription()
             : 'Not instanceof craft\queue\JobInterface';
 
         // Run queue in the background
         if ($this->plugin->getRateLimiter()->canIUse($context)) {
+
             try {
-                $this->plugin->getProcess()->start();
+                $process = $this->plugin->getProcess()->start();
                 $this->plugin->getRateLimiter()->increment();
                 $handled = true;
 
+                $process->wait();
+
             } catch (PhpExecutableNotFound) {
-                Craft::debug(
+                Craft::error(
                     'QueueHandler::startBackgroundProcess() (PhpExecutableNotFound)',
                     'async-queue'
                 );
             } catch (RuntimeException | LogicException $e) {
-                Craft::debug(
+                Craft::error(
                     Craft::t(
                         'async-queue',
                         'QueueHandler::startBackgroundProcess() (Job status: {status}. Exit code: {code})', [
@@ -68,7 +72,7 @@ class BackgroundQueueHandler
         }
 
         if ($event->job instanceof BaseJob) {
-            Craft::debug(
+            Craft::info(
                 Craft::t(
                     'async-queue',
                     'New PushEvent for {job} job - ({handled})', [

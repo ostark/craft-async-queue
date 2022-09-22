@@ -55,7 +55,7 @@ PHP_BINARY="/usr/local/Cellar/php71/7.1.0_11/bin/php"
 ```
 
 
-By default `2` background processes handle the queue. With the `ASYNC_QUEUE_CONCURRENCY` ENV var you can modify this behaviour.
+By default `1` background process handles the queue. With the `ASYNC_QUEUE_CONCURRENCY` ENV var you can modify this behaviour.
 ```
 # No concurrency
 ASYNC_QUEUE_CONCURRENCY=1

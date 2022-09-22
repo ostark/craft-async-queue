@@ -9,7 +9,7 @@ class QueueCommand extends Component
 {
     public const DEFAULT_SCRIPT = "craft";
 
-    public const DEFAULT_ARGS = "queue/run";
+    public const DEFAULT_ARGS = "queue/run -v";
 
     public const EVENT_PREPARE_COMMAND = 'prepareCommand';
 
@@ -68,7 +68,8 @@ class QueueCommand extends Component
         }
 
         // default decoration
-        return "nice -n 15 {$commandLine}"; //  > /tmp/null.txt 2>&1 &
+        return "nice -n 15 {$commandLine} > /dev/null 2>&1 &";
+
     }
 
 }
