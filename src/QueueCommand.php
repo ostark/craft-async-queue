@@ -9,7 +9,7 @@ class QueueCommand extends Component
 {
     public const DEFAULT_SCRIPT = "craft";
 
-    public const DEFAULT_ARGS = "queue/run";
+    public const DEFAULT_ARGS = "queue/run -v";
 
     public const EVENT_PREPARE_COMMAND = 'prepareCommand';
 
@@ -45,7 +45,9 @@ class QueueCommand extends Component
             throw new PhpExecutableNotFound('Unable to find php executable.');
         }
 
-        $commandLine = implode(" ", [$php, $this->scriptName, $this->scriptArgs]);
+        $path = realpath(CRAFT_BASE_PATH);
+        $script = $path . DIRECTORY_SEPARATOR . $this->scriptName;
+        $commandLine = implode(" ", [$php, $script, $this->scriptArgs]);
 
         return $this->decorate($commandLine);
     }
@@ -67,6 +69,7 @@ class QueueCommand extends Component
 
         // default decoration
         return "nice -n 15 {$commandLine} > /dev/null 2>&1 &";
+
     }
 
 }

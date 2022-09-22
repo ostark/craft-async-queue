@@ -35,12 +35,10 @@ class BackgroundProcess
     public function start()
     {
         $cmd = $this->command->getPreparedCommand();
-        $cwd = realpath(CRAFT_BASE_PATH);
-
-        $process = Process::fromShellCommandline($cmd, $cwd);
+        $process = Process::fromShellCommandline($cmd);
 
         try {
-            $process->run();
+            $process->start();
         } catch (\Symfony\Component\Process\Exception\RuntimeException $runtimeException) {
             $runtimeException = new RuntimeException($runtimeException->getMessage());
             $runtimeException->setProcess($process);

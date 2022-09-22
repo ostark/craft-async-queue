@@ -9,7 +9,12 @@ $content = json_encode(['$argv' => $argv, 'timestamp' => time(), 'date' => date(
 
 echo 'Start' . PHP_EOL;
 file_put_contents(TEST_FILE, $content);
-sleep(1);
+
+// emulate blocking
+if (in_array('--sleep', $argv)) {
+    sleep(20);
+}
+
 echo 'Stop' . PHP_EOL;
 
 if (in_array('--error', $argv)) {

@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.1.0] - 2022-09-22
+
+> {note} Upgrading is highly recommended. The previous version did not limit concurrency of queue runners. `ASYNC_QUEUE_CONCURRENCY` defaults to `1` now. 
+
+- Fixed RateLimiter
+- Added tests for RateLimiter / concurrency
+- Concurrency of queue runners defaults to `1` now 
+
+
 ## [3.0.0] - 2022-05-12
 - Craft 4 support
 - PHP 8 syntax

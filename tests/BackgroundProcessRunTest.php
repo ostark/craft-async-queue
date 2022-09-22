@@ -30,22 +30,40 @@ class BackgroundProcessRunTest extends TestCase
         $bgProcess = new BackgroundProcess($command);
         $process   = $bgProcess->start();
 
+        $process->wait();
+
+        // give it some time to write the test file
+        usleep(150000);
+
         $this->assertEquals(0, $process->getExitCode());
         $this->assertTrue($process->isSuccessful());
         $this->assertEquals(\Symfony\Component\Process\Process::STATUS_TERMINATED, $process->getStatus());
 
-        // Wait 0.25 seconds
-        usleep(250000);
+        $this->assertFileExists(TEST_FILE);
 
         $content = json_decode(file_get_contents(TEST_FILE), true);
-
         $this->assertTrue(is_array($content), 'Unable to read and json_decode test file.');
-        $this->assertContains('craft.php', $content['$argv']);
-        $this->assertContains('queue/run', $content['$argv']);
+        $this->assertStringContainsString('craft.php', $content['$argv'][0]);
+        $this->assertStringContainsString('queue/run', $content['$argv'][1]);
         $this->assertGreaterThanOrEqual($content['timestamp'], time());
-
-
     }
 
+    /**
+     * @covers \ostark\AsyncQueue\BackgroundProcess::start
+     */
+    public function test_process_does_not_block(): void
+    {
+        $command   = new \ostark\AsyncQueue\QueueCommand('craft.php', '--sleep');
+        $bgProcess = new BackgroundProcess($command);
+        $process   = $bgProcess->start();
 
+        // give it some time to write the test file
+        usleep(150000);
+
+        $this->assertFileExists(TEST_FILE);
+
+        $content = json_decode(file_get_contents(TEST_FILE), true);
+        $this->assertGreaterThanOrEqual($content['timestamp'], time());
+
+    }
 }

@@ -36,7 +36,12 @@ class RateLimiter
      */
     public function canIUse(string $context = null): bool
     {
+        if ($this->internalCount >= $this->maxItems) {
+            return false;
+        }
+
         try {
+            $this->queue->channel = 'queue';
             $reserved = $this->queue->getTotalReserved();
         } catch (\Exception) {
             $reserved = 0;
@@ -52,6 +57,11 @@ class RateLimiter
     public function increment(): void
     {
         $this->internalCount++;
+    }
+
+    public function getInternalCount(): int
+    {
+        return $this->internalCount;
     }
 
 
