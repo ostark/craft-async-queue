@@ -47,7 +47,7 @@ $config = \craft\helpers\ArrayHelper::merge(
 
 // Initialize the application
 /** @var \craft\web\Application|craft\console\Application $app */
-$app = Craft::createObject($config);
+$app = Craft::createObject($config); /** @phpstan-ignore-line */
 
 
 // Load and run Craft
