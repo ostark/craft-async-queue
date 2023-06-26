@@ -44,7 +44,8 @@ class RateLimiter
             $this->queue->channel = 'queue';
             $reserved = $this->queue->getTotalReserved();
         } catch (\Exception) {
-            $reserved = 0;
+            $this->increment();
+            return false;
         }
 
         $currentUsage = $this->internalCount + $reserved;
