@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.1.1] - 2023-01-04
+
+- composer housekeeping, thanks @markhuot
+
 ## [3.1.0] - 2022-09-22
 
 > {note} Upgrading is highly recommended. The previous version did not limit concurrency of queue runners. `ASYNC_QUEUE_CONCURRENCY` defaults to `1` now. 
