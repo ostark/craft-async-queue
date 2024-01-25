@@ -5,12 +5,8 @@
 [![Monthly Downloads](https://poser.pugx.org/ostark/craft-async-queue/d/monthly)](https://packagist.org/packages/ostark/craft-async-queue)
 [![Buy us a tree](https://img.shields.io/badge/Treeware-%F0%9F%8C%B3-lightgreen)](https://plant.treeware.earth/ostark/craft-async-queue)
 
-
-With Craft's job queue you can run heavy tasks in the background. Unfortunately, this is not entirely true, when `runQueueAutomatically => true` (default), the job queue is handled by a ajax (FPM) call.
-With many jobs in the queue and limited PHP-FPM processes this can break your site.  
-
-This plugin replaces Craft's default queue handler and moves queue execution to a non-blocking background process.
-The command `craft queue/run` gets executed right after you push a Job to the queue. 
+With Craft's job queue you can run heavy tasks in the background. Unfortunately, this is not entirely true. When `runQueueAutomatically => true` (default), the job queue is handled by a ajax (FPM) call.
+With many jobs in the queue and limited PHP-FPM processes this can break your site. This plugin replaces Craft's default queue handler and moves queue execution to a non-blocking background process. The command `craft queue/run` gets executed right after you push a job to the queue. 
 
 [Here](https://github.com/craftcms/cms/issues/1952) you can find the initial discussion I started at `craftcms/cms`.
 
@@ -68,6 +64,9 @@ To disable the plugin in certain environments, like on Windows which is not supp
 ```
 DISABLE_ASYNC_QUEUE=1
 ```
+
+Note that the plugin will overwrite the `runQueueAutomatically` setting with Craft CMS. No configurartion required.
+
 
 ## Tests
 
