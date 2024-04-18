@@ -35,6 +35,7 @@ class BackgroundProcessRunTest extends TestCase
         // give it some time to write the test file
         usleep(150000);
 
+
         $this->assertEquals(0, $process->getExitCode());
         $this->assertTrue($process->isSuccessful());
         $this->assertEquals(\Symfony\Component\Process\Process::STATUS_TERMINATED, $process->getStatus());

@@ -10,7 +10,7 @@ use yii\queue\PushEvent;
  */
 class RateLimiterTest extends TestCase
 {
-    public $plugin;
+    public \ostark\AsyncQueue\Plugin $plugin;
 
     public function setUp(): void
     {

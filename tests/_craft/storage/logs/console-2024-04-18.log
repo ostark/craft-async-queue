@@ -1,0 +1,4 @@
+2024-04-18 08:49:46 [console.INFO] [yii\db\Connection::open] Opening DB connection: mysql:host=;dbname=;port=3306 {"memory":8712496} 
+2024-04-18 08:49:46 [console.INFO] [yii\db\Connection::open] Opening DB connection: mysql:host=;dbname=;port=3306 {"memory":9824936} 
+2024-04-18 08:50:06 [console.INFO] [yii\db\Connection::open] Opening DB connection: mysql:host=;dbname=;port=3306 {"memory":8712488} 
+2024-04-18 08:50:06 [console.INFO] [yii\db\Connection::open] Opening DB connection: mysql:host=;dbname=;port=3306 {"memory":8712488} 
