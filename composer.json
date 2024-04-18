@@ -22,7 +22,7 @@
   ],
   "require": {
     "php": "^8.0",
-    "craftcms/cms": "^4.0.0",
+    "craftcms/cms": "^4.0|^5.0",
     "symfony/process": "^5.0|^6.0"
   },
   "autoload": {

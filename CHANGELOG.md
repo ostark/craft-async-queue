@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.2.0] - 2024-04-18
+
+- Craft 5 compatibility
+
 ## [3.1.1] - 2023-01-04
 
 - composer housekeeping, thanks @markhuot

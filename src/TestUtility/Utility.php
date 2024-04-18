@@ -64,7 +64,7 @@ class Utility extends \craft\base\Utility
         // Register the Utility
         Event::on(
             Utilities::class,
-            Utilities::EVENT_REGISTER_UTILITY_TYPES, function (RegisterComponentTypesEvent $event): void {
+            Utilities::EVENT_REGISTER_UTILITIES, function (RegisterComponentTypesEvent $event): void {
             $event->types[] = Utility::class;
         });
 
