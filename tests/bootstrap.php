@@ -29,6 +29,7 @@ $configService->configDir = CRAFT_CONFIG_PATH;
 $configService->appDefaultsDir = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'defaults';
 $generalConfig = $configService->getConfigFromFile('general');
 
+/** @var array{class: class-string, array<string, mixed>} $config */
 $config = \craft\helpers\ArrayHelper::merge(
     [
         'vendorPath' => CRAFT_VENDOR_PATH,

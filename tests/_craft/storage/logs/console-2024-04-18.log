@@ -1,0 +1,252 @@
+2024-04-18 08:41:02 [console.INFO] [yii\db\Connection::open] Opening DB connection: mysql:host=;dbname=;port=3306 {"memory":48260896} 
+2024-04-18 08:41:02 [console.INFO] [application] Request context:
+$_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = []
+
+$_SERVER = [
+    'NVM_INC' => '/Users/os/.nvm/versions/node/v12.22.12/include/node'
+    'NVM_CD_FLAGS' => '-q'
+    'SHELL' => '/bin/zsh'
+    'TMPDIR' => '/var/folders/s_/bl7wtlm17tn2tnfpw9wx1yh80000gn/T/'
+    'ZSH' => '/Users/os/.oh-my-zsh'
+    'HERD_PHP_83_INI_SCAN_DIR' => '/Users/os/Library/Application Support/Herd/config/php/83/'
+    'USER' => 'os'
+    'NVM_DIR' => '/Users/os/.nvm'
+    'LS_COLORS' => 'di=1;36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
+    'COMMAND_MODE' => 'unix2003'
+    'SSH_AUTH_SOCK' => '/private/tmp/com.apple.launchd.m0JnPsqqyR/Listeners'
+    '__CF_USER_TEXT_ENCODING' => '0x1F5:0:0'
+    'COLUMNS' => '80'
+    'PAGER' => 'less'
+    'LSCOLORS' => 'Gxfxcxdxbxegedabagacad'
+    'PATH' => '/Users/os/Library/Application Support/Herd/bin/:/Users/os/.nvm/versions/node/v12.22.12/bin:/usr/local/sbin:/usr/local/bin:/usr/local/heroku/bin:/Users/os/Library/Python/2.7/bin:/Users/os/.composer/vendor/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/go/bin:/Users/os/Code/go/bin'
+    '__CFBundleIdentifier' => 'com.jetbrains.PhpStorm'
+    'PWD' => '•••••••••••••••••••••••••••••••••••••••••••••••••••'
+    'XPC_FLAGS' => '0x0'
+    'LINES' => '50'
+    'PHP_HOME' => '/usr/local/Cellar/php/7.3.11/bin'
+    'XPC_SERVICE_NAME' => 'application.com.jetbrains.PhpStorm.14957842.14958596'
+    'SHELL_VERBOSITY' => 0
+    'SHLVL' => '1'
+    'HOME' => '/Users/os'
+    'IDEA_INITIAL_DIRECTORY' => '/'
+    'LESS' => '-R'
+    'LOGNAME' => 'os'
+    'LC_CTYPE' => 'de_DE.UTF-8'
+    'NVM_BIN' => '/Users/os/.nvm/versions/node/v12.22.12/bin'
+    'GOPATH' => '/Users/os/Code/go'
+    '_' => '/Users/os/Library/Application Support/Herd/bin/php83'
+    'PHP_SELF' => '/Users/os/Projects/Craft/packages/craft-async-queue/vendor/bin/phpstan'
+    'SCRIPT_NAME' => '/Users/os/Projects/Craft/packages/craft-async-queue/vendor/bin/phpstan'
+    'SCRIPT_FILENAME' => '/Users/os/Projects/Craft/packages/craft-async-queue/vendor/bin/phpstan'
+    'PATH_TRANSLATED' => '/Users/os/Projects/Craft/packages/craft-async-queue/vendor/bin/phpstan'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1713429661.8982
+    'REQUEST_TIME' => 1713429661
+    'argv' => [
+        0 => '/Users/os/Projects/Craft/packages/craft-async-queue/vendor/bin/phpstan'
+        1 => 'worker'
+        2 => '--configuration'
+        3 => '/Users/os/Projects/Craft/packages/craft-async-queue/phpstan.neon'
+        4 => '--memory-limit=2G'
+        5 => '--port'
+        6 => '51268'
+        7 => '--identifier'
+        8 => '9wjc8bpf13'
+        9 => '--'
+        10 => '/private/var/folders/s_/bl7wtlm17tn2tnfpw9wx1yh80000gn/T/PHPStantemp_folder3619/tests/BackgroundProcessRunTest.php'
+    ]
+    'argc' => 11
+] {"environment":"test"} 
+2024-04-18 08:41:02 [console.INFO] [yii\db\Connection::open] Opening DB connection: mysql:host=;dbname=;port=3306 {"memory":48261312} 
+2024-04-18 08:41:02 [console.INFO] [application] Request context:
+$_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = []
+
+$_SERVER = [
+    'PATH' => '/Users/os/Library/Application Support/Herd/bin/:/Users/os/.nvm/versions/node/v12.22.12/bin:/usr/local/sbin:/usr/local/bin:/usr/local/heroku/bin:/Users/os/Library/Python/2.7/bin:/Users/os/.composer/vendor/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/go/bin:/Users/os/Code/go/bin'
+    'COMMAND_MODE' => 'unix2003'
+    'NVM_INC' => '/Users/os/.nvm/versions/node/v12.22.12/include/node'
+    'PHP_HOME' => '/usr/local/Cellar/php/7.3.11/bin'
+    'LOGNAME' => 'os'
+    'XPC_SERVICE_NAME' => 'application.com.jetbrains.PhpStorm.14957842.14958596'
+    'PWD' => '•••••••••••••••••••••••••••••••••••••••••••••••••••'
+    '__CFBundleIdentifier' => 'com.jetbrains.PhpStorm'
+    'NVM_CD_FLAGS' => '-q'
+    'HERD_PHP_83_INI_SCAN_DIR' => '/Users/os/Library/Application Support/Herd/config/php/83/'
+    'SHELL' => '/bin/zsh'
+    'NVM_DIR' => '/Users/os/.nvm'
+    'PAGER' => 'less'
+    'LSCOLORS' => 'Gxfxcxdxbxegedabagacad'
+    'OLDPWD' => '/'
+    'GOPATH' => '/Users/os/Code/go'
+    'USER' => 'os'
+    'ZSH' => '/Users/os/.oh-my-zsh'
+    'TMPDIR' => '/var/folders/s_/bl7wtlm17tn2tnfpw9wx1yh80000gn/T/'
+    'SSH_AUTH_SOCK' => '/private/tmp/com.apple.launchd.m0JnPsqqyR/Listeners'
+    'XPC_FLAGS' => '0x0'
+    '__CF_USER_TEXT_ENCODING' => '0x1F5:0:0'
+    'LESS' => '-R'
+    'LC_CTYPE' => 'de_DE.UTF-8'
+    'LS_COLORS' => 'di=1;36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
+    'IDEA_INITIAL_DIRECTORY' => '/'
+    'NVM_BIN' => '/Users/os/.nvm/versions/node/v12.22.12/bin'
+    'HOME' => '/Users/os'
+    'PHP_SELF' => '/Users/os/Projects/Craft/packages/craft-async-queue/vendor/bin/phpstan'
+    'SCRIPT_NAME' => '/Users/os/Projects/Craft/packages/craft-async-queue/vendor/bin/phpstan'
+    'SCRIPT_FILENAME' => '/Users/os/Projects/Craft/packages/craft-async-queue/vendor/bin/phpstan'
+    'PATH_TRANSLATED' => '/Users/os/Projects/Craft/packages/craft-async-queue/vendor/bin/phpstan'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1713429661.6525
+    'REQUEST_TIME' => 1713429661
+    'argv' => [
+        0 => '/Users/os/Projects/Craft/packages/craft-async-queue/vendor/bin/phpstan'
+        1 => 'analyze'
+        2 => '-c'
+        3 => '/Users/os/Projects/Craft/packages/craft-async-queue/phpstan.neon'
+        4 => '--memory-limit=2G'
+        5 => '--error-format=checkstyle'
+        6 => '--no-progress'
+        7 => '--no-ansi'
+        8 => '--no-interaction'
+        9 => '/private/var/folders/s_/bl7wtlm17tn2tnfpw9wx1yh80000gn/T/PHPStantemp_folder3619/tests/BackgroundProcessRunTest.php'
+    ]
+    'argc' => 10
+    'SHELL_VERBOSITY' => 0
+] {"environment":"test"} 
+2024-04-18 08:41:04 [console.INFO] [yii\db\Connection::open] Opening DB connection: mysql:host=;dbname=;port=3306 {"memory":48260896} 
+2024-04-18 08:41:04 [console.INFO] [application] Request context:
+$_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = []
+
+$_SERVER = [
+    'NVM_INC' => '/Users/os/.nvm/versions/node/v12.22.12/include/node'
+    'NVM_CD_FLAGS' => '-q'
+    'SHELL' => '/bin/zsh'
+    'TMPDIR' => '/var/folders/s_/bl7wtlm17tn2tnfpw9wx1yh80000gn/T/'
+    'ZSH' => '/Users/os/.oh-my-zsh'
+    'HERD_PHP_83_INI_SCAN_DIR' => '/Users/os/Library/Application Support/Herd/config/php/83/'
+    'USER' => 'os'
+    'NVM_DIR' => '/Users/os/.nvm'
+    'LS_COLORS' => 'di=1;36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
+    'COMMAND_MODE' => 'unix2003'
+    'SSH_AUTH_SOCK' => '/private/tmp/com.apple.launchd.m0JnPsqqyR/Listeners'
+    '__CF_USER_TEXT_ENCODING' => '0x1F5:0:0'
+    'COLUMNS' => '80'
+    'PAGER' => 'less'
+    'LSCOLORS' => 'Gxfxcxdxbxegedabagacad'
+    'PATH' => '/Users/os/Library/Application Support/Herd/bin/:/Users/os/.nvm/versions/node/v12.22.12/bin:/usr/local/sbin:/usr/local/bin:/usr/local/heroku/bin:/Users/os/Library/Python/2.7/bin:/Users/os/.composer/vendor/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/go/bin:/Users/os/Code/go/bin'
+    '__CFBundleIdentifier' => 'com.jetbrains.PhpStorm'
+    'PWD' => '•••••••••••••••••••••••••••••••••••••••••••••••••••'
+    'XPC_FLAGS' => '0x0'
+    'LINES' => '50'
+    'PHP_HOME' => '/usr/local/Cellar/php/7.3.11/bin'
+    'XPC_SERVICE_NAME' => 'application.com.jetbrains.PhpStorm.14957842.14958596'
+    'SHELL_VERBOSITY' => 0
+    'SHLVL' => '1'
+    'HOME' => '/Users/os'
+    'IDEA_INITIAL_DIRECTORY' => '/'
+    'LESS' => '-R'
+    'LOGNAME' => 'os'
+    'LC_CTYPE' => 'de_DE.UTF-8'
+    'NVM_BIN' => '/Users/os/.nvm/versions/node/v12.22.12/bin'
+    'GOPATH' => '/Users/os/Code/go'
+    '_' => '/Users/os/Library/Application Support/Herd/bin/php83'
+    'PHP_SELF' => '/Users/os/Projects/Craft/packages/craft-async-queue/vendor/bin/phpstan'
+    'SCRIPT_NAME' => '/Users/os/Projects/Craft/packages/craft-async-queue/vendor/bin/phpstan'
+    'SCRIPT_FILENAME' => '/Users/os/Projects/Craft/packages/craft-async-queue/vendor/bin/phpstan'
+    'PATH_TRANSLATED' => '/Users/os/Projects/Craft/packages/craft-async-queue/vendor/bin/phpstan'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1713429664.2469
+    'REQUEST_TIME' => 1713429664
+    'argv' => [
+        0 => '/Users/os/Projects/Craft/packages/craft-async-queue/vendor/bin/phpstan'
+        1 => 'worker'
+        2 => '--configuration'
+        3 => '/Users/os/Projects/Craft/packages/craft-async-queue/phpstan.neon'
+        4 => '--memory-limit=2G'
+        5 => '--port'
+        6 => '51270'
+        7 => '--identifier'
+        8 => '87nd3oan54'
+        9 => '--'
+        10 => '/private/var/folders/s_/bl7wtlm17tn2tnfpw9wx1yh80000gn/T/PHPStantemp_folder263/tests/BackgroundProcessRunTest.php'
+    ]
+    'argc' => 11
+] {"environment":"test"} 
+2024-04-18 08:41:04 [console.INFO] [yii\db\Connection::open] Opening DB connection: mysql:host=;dbname=;port=3306 {"memory":48261312} 
+2024-04-18 08:41:04 [console.INFO] [application] Request context:
+$_GET = []
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = []
+
+$_SERVER = [
+    'PATH' => '/Users/os/Library/Application Support/Herd/bin/:/Users/os/.nvm/versions/node/v12.22.12/bin:/usr/local/sbin:/usr/local/bin:/usr/local/heroku/bin:/Users/os/Library/Python/2.7/bin:/Users/os/.composer/vendor/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/go/bin:/Users/os/Code/go/bin'
+    'COMMAND_MODE' => 'unix2003'
+    'NVM_INC' => '/Users/os/.nvm/versions/node/v12.22.12/include/node'
+    'PHP_HOME' => '/usr/local/Cellar/php/7.3.11/bin'
+    'LOGNAME' => 'os'
+    'XPC_SERVICE_NAME' => 'application.com.jetbrains.PhpStorm.14957842.14958596'
+    'PWD' => '•••••••••••••••••••••••••••••••••••••••••••••••••••'
+    '__CFBundleIdentifier' => 'com.jetbrains.PhpStorm'
+    'NVM_CD_FLAGS' => '-q'
+    'HERD_PHP_83_INI_SCAN_DIR' => '/Users/os/Library/Application Support/Herd/config/php/83/'
+    'SHELL' => '/bin/zsh'
+    'NVM_DIR' => '/Users/os/.nvm'
+    'PAGER' => 'less'
+    'LSCOLORS' => 'Gxfxcxdxbxegedabagacad'
+    'OLDPWD' => '/'
+    'GOPATH' => '/Users/os/Code/go'
+    'USER' => 'os'
+    'ZSH' => '/Users/os/.oh-my-zsh'
+    'TMPDIR' => '/var/folders/s_/bl7wtlm17tn2tnfpw9wx1yh80000gn/T/'
+    'SSH_AUTH_SOCK' => '/private/tmp/com.apple.launchd.m0JnPsqqyR/Listeners'
+    'XPC_FLAGS' => '0x0'
+    '__CF_USER_TEXT_ENCODING' => '0x1F5:0:0'
+    'LESS' => '-R'
+    'LC_CTYPE' => 'de_DE.UTF-8'
+    'LS_COLORS' => 'di=1;36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
+    'IDEA_INITIAL_DIRECTORY' => '/'
+    'NVM_BIN' => '/Users/os/.nvm/versions/node/v12.22.12/bin'
+    'HOME' => '/Users/os'
+    'PHP_SELF' => '/Users/os/Projects/Craft/packages/craft-async-queue/vendor/bin/phpstan'
+    'SCRIPT_NAME' => '/Users/os/Projects/Craft/packages/craft-async-queue/vendor/bin/phpstan'
+    'SCRIPT_FILENAME' => '/Users/os/Projects/Craft/packages/craft-async-queue/vendor/bin/phpstan'
+    'PATH_TRANSLATED' => '/Users/os/Projects/Craft/packages/craft-async-queue/vendor/bin/phpstan'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1713429663.9928
+    'REQUEST_TIME' => 1713429663
+    'argv' => [
+        0 => '/Users/os/Projects/Craft/packages/craft-async-queue/vendor/bin/phpstan'
+        1 => 'analyze'
+        2 => '-c'
+        3 => '/Users/os/Projects/Craft/packages/craft-async-queue/phpstan.neon'
+        4 => '--memory-limit=2G'
+        5 => '--error-format=checkstyle'
+        6 => '--no-progress'
+        7 => '--no-ansi'
+        8 => '--no-interaction'
+        9 => '/private/var/folders/s_/bl7wtlm17tn2tnfpw9wx1yh80000gn/T/PHPStantemp_folder263/tests/BackgroundProcessRunTest.php'
+    ]
+    'argc' => 10
+    'SHELL_VERBOSITY' => 0
+] {"environment":"test"} 
