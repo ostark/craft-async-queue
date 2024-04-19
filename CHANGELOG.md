@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [4.0.0] - 2024-04-19
+
+Craft 5 only
+
 ## [3.2.0] - 2024-04-18
 
 - Craft 5 compatibility
