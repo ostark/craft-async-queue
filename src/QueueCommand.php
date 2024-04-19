@@ -45,6 +45,7 @@ class QueueCommand extends Component
             throw new PhpExecutableNotFound('Unable to find php executable.');
         }
 
+        $php = str_replace(' ', '\ ', $php);
         $path = realpath(CRAFT_BASE_PATH);
         $script = $path . DIRECTORY_SEPARATOR . $this->scriptName;
         $commandLine = implode(" ", [$php, $script, $this->scriptArgs]);
