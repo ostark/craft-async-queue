@@ -23,5 +23,15 @@
     <a class="btn" onclick="window.location.reload();">{{ "Refresh"|t('async-queue') }}</a>
 
 </form>
+<br>
+<br>
+<br>
+<form class="utility" method="post" accept-charset="UTF-8">
+    {{ redirectInput('utilities/async-queue-test') }}
+    {{ csrfInput() }}
+    <input type="hidden" name="action" value="async-queue/test/run-with-delay">
+    <input type="hidden" name="utility" value="1">
+    <input type="submit" class="btn submit" value="{{ "Run test with Delay"|t('async-queue') }}"/>
+</form>
 
 
