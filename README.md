@@ -20,7 +20,7 @@ This package is [Treeware](https://treeware.earth). If you use it in production,
 
 ## Requirements
 
-* Craft 3 or 4
+* Craft 3, 4, 5
 * Permissions to execute a php binary
 * proc_open()
 * **PHP >=7.1** (for PHP 7.0 use `ostark/craft-async-queue:1.3.*`)
